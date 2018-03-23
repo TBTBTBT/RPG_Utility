@@ -60,7 +60,7 @@ public class PlayerSample : CharacterOnField {
     }
 
 
-    private float _moveSpeed = 0.01f;
+    private float _moveSpeed = 0.015f;
     Vector2 _moveDirection = new Vector2(0,0);
 
     #region 入力
@@ -83,6 +83,10 @@ public class PlayerSample : CharacterOnField {
 
     #endregion
 
+    private bool l = false;
+    private bool u;
+    private bool r;
+    private bool d;
     #region 移動
     void Move()
     {
@@ -94,12 +98,15 @@ public class PlayerSample : CharacterOnField {
             bool up = field.IsFieldPassable(pos + new Vector2Int(0, -1));
             bool right = field.IsFieldPassable(pos + new Vector2Int(1, 0));
             bool down = field.IsFieldPassable(pos + new Vector2Int(0, 1));
-
+            l = left;
+            u = up;
+            d = down;
+            r = right;
             transform.position += (Vector3) (Vector2) _moveDirection.normalized * _moveSpeed;
             //        Debug.Log(pos);
 
 
-            Gravitation(left, up, right, down, pos, 0.15f);
+            Gravitation(left, up, right, down, pos, 0.05f,0.5f);
         }
     }
     #endregion
@@ -142,8 +149,8 @@ public class PlayerSample : CharacterOnField {
 	// Update is called once per frame
 	void Update ()
 	{
-        //InputTouch();
-	    InputKey();
+        InputTouch();
+	    //InputKey();
         Move();
 	    ChangeDirection();
 
@@ -159,8 +166,11 @@ public class PlayerSample : CharacterOnField {
             outText += p + " : " + _parameter[p] + System.Environment.NewLine;
         }
 
-        outText += _moveDirection;
-        outText += "State : " + _states[_nowState];
+        outText += _moveDirection + System.Environment.NewLine;
+        outText += u + System.Environment.NewLine;
+        outText += l +","+ r + System.Environment.NewLine;
+        outText += d;
+       // outText += "State : " + _states[_nowState];
         Rect rect = new Rect(0, 0, Screen.width, Screen.height);
         GUIStyle style = new GUIStyle();
         style.fontSize = 12;

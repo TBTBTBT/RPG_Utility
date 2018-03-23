@@ -17,7 +17,7 @@ public class AnimationManagerBase : MonoBehaviour
     //}
 
 
-    virtual protected void Start()
+    protected virtual void Start()
     {
 
 		//キャラクターからデータをもらう
@@ -25,7 +25,6 @@ public class AnimationManagerBase : MonoBehaviour
         {
             _animateChara.OnChangeState.AddListener(ChangeState);
             _states = _animateChara.GetStates();
-            Debug.Log(_states);
         }
     }
     protected void ChangeState(int state)

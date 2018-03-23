@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Boo.Lang.Environments;
 using UnityEngine;
 using UnityEngine.Events;
 /// <summary>
@@ -47,17 +48,70 @@ public class FieldInfo
     }
     
 }
+/// <summary>
+/// 見た目の処理
+/// </summary>
+[Serializable]
+public class FieldViewController
+{
+    [Header("フィールドオブジェクトのプレハブ")]
+    public GameObject _fieldPrefab;
+    [Header("フィールドオブジェクトの親オブジェクト")]
+    public GameObject _fieldRoot;
+
+    public GameObject[,] _fieldObject;
+    public void Init()
+    {
+        FieldManager field = FieldManager.Instance;
+
+        _fieldObject = new GameObject[field._width,field._height];
+        for (int i = 0; i < field._width; i++)
+        {
+            for (int j = 0; j < field._height; j++)
+            {
+                _fieldObject[i,j] = GameObject.Instantiate(_fieldPrefab, _fieldRoot.transform);
+                Vector2 pos = field.IndexToPosition(new Vector2Int(i, j));
+                _fieldObject[i, j].transform.position = new Vector3(pos.x,pos.y,10);
+
+                
+            }
+        }
+        field.OnChangeField.AddListener(ChangeField);
+    }
+
+    void ChangeField()
+    {
+        FieldManager field = FieldManager.Instance;
+
+        for (int i = 0; i < field._width; i++)
+        {
+            for (int j = 0; j < field._height; j++)
+            {
+                if (_fieldObject[i, j].GetComponent<FieldView>())
+                {
+                    _fieldObject[i, j].GetComponent<FieldView>().ChangeSprite(field.GetFieldInfo(i,j));
+                }
+            }
+        }
+    }
+}
+
+/// <summary>
+/// フィールドに関する処理を行うクラス
+/// </summary>
 public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
 {
     [System.NonSerialized]
-    public int _width = 15;
+    public int _width = 30;
     [System.NonSerialized]
-    public int _height = 15;
+    public int _height = 30;
 
     private FieldInfo[,] _field;
 
     //フィールドの見た目の大きさ倍率
-    private float _extend = 1.6f;
+    private float _extend = 0.32f;
+
+    public FieldViewController _fieldView;
 
     //フィールドの内部値が変更されたときに呼び出される
     [System.NonSerialized]
@@ -77,6 +131,8 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
                 SetFieldState(i, j, FieldParam.IsUnlock, true);
             }
         }
+
+        _fieldView.Init();
     }
 
     void Start () {
@@ -88,6 +144,21 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
 		
 	}
 
+    #region 外部からフィールドを変更する
+
+    public void FieldGenerate(FieldInfo[,] gen)
+    {
+        for (int i = 0; i < _width; i++)
+        {
+            for (int j = 0; j < _height; j++)
+            {
+                _field[i, j] = gen[i, j];
+            }
+        }
+        OnChangeField.Invoke();
+    }
+
+    #endregion
 
     #region 初期化
 
@@ -113,13 +184,13 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     {
         float fx = (float)pos.x;
         float fy = (float)pos.y;
-        Vector2 ret = new Vector2(fx - _width / 2, -(fy - _height / 2)) * _extend;
+        Vector2 ret = new Vector2(fx - _width / 2f, -(fy - _height / 2f)) * _extend;
         return ret;
     }
     public Vector2Int PositionToIndex(Vector2 pos)
     {
-        int fx = (int)((_width / 2f + pos.x / _extend));
-        int fy = (int)((_height / 2f - pos.y / _extend));
+        int fx =Mathf.RoundToInt((_width / 2f + pos.x / _extend));
+        int fy = Mathf.RoundToInt(((_height / 2f - pos.y / _extend)));
         fx = IndexModify(fx, 0, _width - 1);
         fy = IndexModify(fy, 0, _height - 1);
         Vector2Int ret = new Vector2Int(fx, fy);
@@ -154,6 +225,17 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     {
         return _field[x,y].GetFieldState(param);
     }
+    /// <summary>
+    /// 情報を受け取る（全部）
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    public FieldInfo GetFieldInfo(int x, int y)
+    {
+        return _field[x, y];
+    }
+
 
     /// <summary>
     /// 情報を更新する !!!OnChangeFieldイベント発動!!!

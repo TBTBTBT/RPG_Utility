@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: a262508a221ff3445a12e5109a7b9a76
-timeCreated: 1521694663
+guid: bfc191683b51ccd489676a226a89d7ff
+timeCreated: 1521799018
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: human_00_move_0
-    21300002: human_00_move_1
-    21300004: human_00_move_2
-    21300006: human_00_move_3
-    21300008: human_00_move_4
-    21300010: human_00_move_5
-    21300012: human_00_move_6
-    21300014: human_00_move_7
-    21300016: human_00_move_8
-    21300018: human_00_move_9
+    21300000: img_human_sample_move_0
+    21300002: img_human_sample_move_1
+    21300004: img_human_sample_move_2
+    21300006: img_human_sample_move_3
+    21300008: img_human_sample_move_4
+    21300010: img_human_sample_move_5
+    21300012: img_human_sample_move_6
+    21300014: img_human_sample_move_7
+    21300016: img_human_sample_move_8
+    21300018: img_human_sample_move_9
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -87,12 +87,12 @@ TextureImporter:
   - buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
   - buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -115,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: human_00_move_0
+      name: img_human_sample_move_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 32
-        height: 32
+        y: 3
+        width: 1
+        height: 1
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,13 +129,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: human_00_move_1
+      name: img_human_sample_move_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
+        x: 1
+        y: 3
+        width: 1
+        height: 1
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,13 +143,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: human_00_move_2
+      name: img_human_sample_move_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
+        x: 2
+        y: 3
+        width: 1
+        height: 1
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,55 +157,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: human_00_move_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: human_00_move_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: human_00_move_5
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: human_00_move_6
+      name: img_human_sample_move_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 32
-        height: 32
+        y: 2
+        width: 1
+        height: 1
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,13 +171,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: human_00_move_7
+      name: img_human_sample_move_4
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
+        x: 1
+        y: 2
+        width: 1
+        height: 1
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,13 +185,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: human_00_move_8
+      name: img_human_sample_move_5
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
+        x: 2
+        y: 2
+        width: 1
+        height: 1
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,13 +199,55 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: human_00_move_9
+      name: img_human_sample_move_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: img_human_sample_move_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: img_human_sample_move_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: img_human_sample_move_9
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 1
+        height: 1
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

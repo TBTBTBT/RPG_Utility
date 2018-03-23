@@ -141,21 +141,21 @@ public class CharacterOnField : CharacterBase
     /// <summary>
     /// 実質壁とのあたり判定 周囲が壁だったら今いるマスの中心に引き寄せられる
     /// </summary>
-    protected void Gravitation(bool left, bool up, bool right, bool down, Vector2Int ind, float buffer = 0)
+    protected void Gravitation(bool left, bool up, bool right, bool down, Vector2Int ind, float buffer,float lerpTime)
     {
         FieldManager field = FieldManager.Instance;
         Vector2 pos = field.IndexToPosition(ind);
-        float lerpTime = 0.3f;
+       // float lerpTime = 0.3f;
 
         if (!left && transform.position.x < pos.x - buffer)
         {
 
             transform.position = new Vector3(Mathf.Lerp(transform.position.x, pos.x - buffer, lerpTime), transform.position.y, transform.position.z);
         }
-
+       // Debug.Log(transform.position.y + "," + pos.y);
         if (!up && transform.position.y > pos.y + buffer)
         {
-            //Debug.Log(pos.y);
+            
             transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, pos.y + buffer, lerpTime), transform.position.z);
         }
 

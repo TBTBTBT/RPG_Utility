@@ -99,7 +99,7 @@ public abstract class SingletonMonoBehaviourCanDestroy<T> : MonoBehaviour where 
 			return _instance;
 		}
 	}
-	virtual protected void Awake ()
+    protected virtual void Awake ()
 	{
 		// 他のGameObjectにアタッチされているか調べる.
 		// アタッチされている場合は破棄する.

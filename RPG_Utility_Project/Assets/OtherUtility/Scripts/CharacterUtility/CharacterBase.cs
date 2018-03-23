@@ -9,7 +9,7 @@ public class CharacterBase : MonoBehaviour
 
     //ステート オーバーライドして使用
     protected List<string> _states;
-    //現在のステート‘
+    //現在のステート
     protected int _nowState = 0;
     //ステートが変更されたときに発動するイベント
     [NonSerialized]
