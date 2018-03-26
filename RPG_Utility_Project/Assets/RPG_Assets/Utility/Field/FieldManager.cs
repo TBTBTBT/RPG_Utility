@@ -48,6 +48,7 @@ public class FieldInfo
     }
     
 }
+
 /// <summary>
 /// 見た目の処理
 /// </summary>
@@ -275,7 +276,18 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
             return GetFieldState(x,y,FieldParam.IsUnlock) && GetFieldState(x, y, FieldParam.IsPassable);
         return false;
     }
+	int BoolToInt(bool b){
+		return b ? 1 : 0;
+	}
+	public int FieldSurround(int x,int y){
+		int left = BoolToInt(IsFieldPassable (x - 1, y)) << 0;
+		int up   = BoolToInt(IsFieldPassable (x, y - 1)) << 1;
+		int right= BoolToInt(IsFieldPassable  (x + 1, y)) << 2;
+		int down = BoolToInt(IsFieldPassable (x , y + 1)) << 3;
+		int ret = left + up + right + down;
+		return ret;
 
+	}
 
     #endregion
 
@@ -307,5 +319,7 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
         }
         return true;
     }
+
+
     #endregion
 }

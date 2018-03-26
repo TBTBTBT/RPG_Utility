@@ -43,7 +43,7 @@ public class FieldView : SpriteCreater
         {
             for (int j = 0; j < size; j++)
             {
-                tx.SetPixel(sx + i, sy + j, arr[ThreeValueToIndex(i, j, size)]);
+                tx.SetPixel(sx + i, sy + j, arr[ThreeValueToIndex(i, size - 1 - j, size)]);
             }
         }
     }
@@ -58,7 +58,8 @@ public class FieldView : SpriteCreater
         Texture2D wt = new Texture2D(field._width * _size, field._height * _size, TextureFormat.ARGB32, false, false);
         wt.filterMode = FilterMode.Point;
         Color[] fc = GetPixels(0);
-        Color[] wall = GetPixels(1);
+        //Color[] wall = GetPixels(1);
+
         Color[] nowall = GetPixels(-1);
         for (int i = 0; i < field._width; i++)
         {
@@ -68,9 +69,11 @@ public class FieldView : SpriteCreater
                 MergePixel(ft, fc, i* _size, j* _size, _size);
 
                 //カベを作成
+
+				int wallIndex = field.FieldSurround(i,j);
                 if (!field.GetFieldState(i, j, FieldParam.IsPassable))
                 {
-                    MergePixel(wt, wall, i * _size, j * _size, _size);
+					MergePixel(wt, GetPixels( wallIndex + 1 ), i * _size, j * _size, _size);
                 }
                 else
                 {

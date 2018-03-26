@@ -30,7 +30,7 @@ public class SpriteCreater : MonoBehaviour {
                 for (int i = 0; i < w; i++)
                 {
                 
-                    Color[] pixels = t.GetPixels(_size * i, _size * j, _size, _size);
+					Color[] pixels = t.GetPixels(_size * i, _size * (h-1-j), _size, _size);
 
                     Texture2D nt = new Texture2D(_size, _size, TextureFormat.ARGB32, false, false);
                     nt.filterMode = FilterMode.Point;
@@ -41,7 +41,7 @@ public class SpriteCreater : MonoBehaviour {
             }
         }
 
-        _sprites.Reverse();
+        //_sprites.Reverse();
     }
 
     protected Color[] GetPixels(int i)
