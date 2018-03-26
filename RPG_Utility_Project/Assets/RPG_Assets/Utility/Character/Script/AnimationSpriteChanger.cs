@@ -1,46 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
-public class AnimationSpriteChanger : MonoBehaviour {
-    private static int idMainTex = Shader.PropertyToID("_MainTex");
+public class AnimationSpriteChanger : SpriteCreater {
+    //private static int idMainTex = Shader.PropertyToID("_MainTex");
     [SerializeField]
-    private Texture texture = null;
-    private MaterialPropertyBlock block;
     SpriteRenderer sr;
-    public Texture overrideTexture
-    {
-        get { return texture; }
-        set
-        {
-            texture = value;
-            if (block == null)
-            {
-                Init();
-            }
-            block.SetTexture(idMainTex, texture);
-        }
-    }
+    public AnimationParamManager _animParam;
 
-    void Awake()
+  
+    void Start()
     {
-        Init();
-        overrideTexture = texture;
+
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = GetSprite(0);
     }
     void LateUpdate()
     {
-        sr.SetPropertyBlock(block);
-        Debug.Log(idMainTex);
+        //sr.SetPropertyBlock(block);
     }
 
     void OnValidate()
     {
         //overrideTexture = texture;
     }
-    void Init()
-    {
-        block = new MaterialPropertyBlock();
-        sr = GetComponent<SpriteRenderer>();
-        sr.GetPropertyBlock(block);
-    }
+
+
 }

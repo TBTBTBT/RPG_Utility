@@ -60,7 +60,7 @@ public class PlayerSample : CharacterOnField {
     }
 
 
-    private float _moveSpeed = 0.015f;
+    private float _moveSpeed = 0.05f;
     Vector2 _moveDirection = new Vector2(0,0);
 
     #region 入力
@@ -106,7 +106,7 @@ public class PlayerSample : CharacterOnField {
             //        Debug.Log(pos);
 
 
-            Gravitation(left, up, right, down, pos, 0.05f,0.5f);
+            Gravitation(left, up, right, down, pos, 0.4f, 0.9f);
         }
     }
     #endregion

@@ -62,6 +62,7 @@ public class FieldViewController
     public GameObject[,] _fieldObject;
     public void Init()
     {
+        /*
         FieldManager field = FieldManager.Instance;
 
         _fieldObject = new GameObject[field._width,field._height];
@@ -77,10 +78,12 @@ public class FieldViewController
             }
         }
         field.OnChangeField.AddListener(ChangeField);
+        */
     }
 
     void ChangeField()
     {
+        /*
         FieldManager field = FieldManager.Instance;
 
         for (int i = 0; i < field._width; i++)
@@ -93,6 +96,7 @@ public class FieldViewController
                 }
             }
         }
+        */
     }
 }
 
@@ -102,14 +106,14 @@ public class FieldViewController
 public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
 {
     [System.NonSerialized]
-    public int _width = 30;
+    public int _width = 50;
     [System.NonSerialized]
-    public int _height = 30;
+    public int _height = 50;
 
     private FieldInfo[,] _field;
 
     //フィールドの見た目の大きさ倍率
-    private float _extend = 0.32f;
+    private float _extend = 1f;
 
     public FieldViewController _fieldView;
 
