@@ -5,11 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class AnimationSpriteChanger : SpriteCreater {
     //private static int idMainTex = Shader.PropertyToID("_MainTex");
-    [SerializeField]
     SpriteRenderer sr;
     public AnimationParamManager _animParam;
+    protected int nowSpriteNumber = 0;
 
-  
     void Start()
     {
 
@@ -18,7 +17,8 @@ public class AnimationSpriteChanger : SpriteCreater {
     }
     void LateUpdate()
     {
-        //sr.SetPropertyBlock(block);
+        ChangeSprite(_animParam.GetAnimationNum());
+//        sr.SetPropertyBlock(block);
     }
 
     void OnValidate()
@@ -26,5 +26,14 @@ public class AnimationSpriteChanger : SpriteCreater {
         //overrideTexture = texture;
     }
 
+    void ChangeSprite(int i)
+    {
+        if (nowSpriteNumber!= i)
+        {
+            sr.sprite = GetSprite(i);
+            nowSpriteNumber = i;
+        }
+    }
+    
 
 }

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: fcfcbbe562db45b4988fb1e668478dfe
+timeCreated: 1522148651
+licenseType: Pro
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: GD-DOTFONT-DQ-TTF
+  fontNames:
+  - GD-DOTFONT-DQ-TTF
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
