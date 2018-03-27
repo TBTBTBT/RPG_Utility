@@ -28,11 +28,15 @@ public class AnimationSpriteChanger : SpriteCreater {
 
     void ChangeSprite(int i)
     {
-        if (nowSpriteNumber!= i)
-        {
-            sr.sprite = GetSprite(i);
-            nowSpriteNumber = i;
-        }
+		if (i >= 0) {
+			if (nowSpriteNumber != i) {
+				sr.sprite = GetSprite (i);
+				nowSpriteNumber = i;
+			}
+		} else {
+			
+		}
+
     }
     
 

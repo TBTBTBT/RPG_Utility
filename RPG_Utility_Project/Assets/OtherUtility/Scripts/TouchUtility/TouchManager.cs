@@ -64,7 +64,19 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager> {
                 touchPosAnchor = TouchInput.GetTouchPosition(num);
             }
             else touchPosBefore = TouchInput.GetTouchPosition(num);
-            touchPosCurrent = TouchInput.GetTouchPosition(num);
+
+			touchPosCurrent = TouchInput.GetTouchPosition(num);
+
+			//タッチアンカー値制限
+			if (touchPosAnchor != null && touchPosCurrent != null)
+			{
+				Vector2 dist = (Vector2)touchPosCurrent - (Vector2)touchPosAnchor;
+				if (dist.magnitude >= 20) {
+					touchPosAnchor = touchPosCurrent - dist.normalized * 20;
+				}
+
+			}
+           
             TouchGesture gesture = PositionToGesture((Vector2)touchPosAnchor, (Vector2)touchPosCurrent);
             EventManager.Invoke(ref EventManager.OnTouchGestureMove, num, gesture);
         }

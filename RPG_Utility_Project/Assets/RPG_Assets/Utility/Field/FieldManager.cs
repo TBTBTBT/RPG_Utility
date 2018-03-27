@@ -279,12 +279,27 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
 	int BoolToInt(bool b){
 		return b ? 1 : 0;
 	}
+	/// <summary>
+	/// 壁生成用 8方向の壁情報をintで取得
+	/// </summary>
+	/// <returns>The surround.</returns>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="y">The y coordinate.</param>
 	public int FieldSurround(int x,int y){
-		int left = BoolToInt(IsFieldPassable (x - 1, y)) << 0;
-		int up   = BoolToInt(IsFieldPassable (x, y - 1)) << 1;
-		int right= BoolToInt(IsFieldPassable  (x + 1, y)) << 2;
-		int down = BoolToInt(IsFieldPassable (x , y + 1)) << 3;
-		int ret = left + up + right + down;
+		int ret = 0;//0b0000
+		/*
+		int shift = 0;
+		for (int i = -1; i < 2; i++) {
+			for (int j = -1; j < 2; j++) {
+				ret += BoolToInt (IsFieldPassable (x + i, y + i)) << shift;
+				shift++;
+			}
+		}
+*/
+		ret += BoolToInt (IsFieldPassable (x - 1, y )) << 0;
+		ret += BoolToInt (IsFieldPassable (x , y - 1)) << 1;
+		ret += BoolToInt (IsFieldPassable (x + 1, y )) << 2;
+		ret += BoolToInt (IsFieldPassable (x , y + 1)) << 3;
 		return ret;
 
 	}
