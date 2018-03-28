@@ -19,6 +19,7 @@ public class SpriteCreater : MonoBehaviour {
     /// </summary>
     void CreateSprites()
     {
+        Debug.Log("重い処理");
         foreach (Texture2D t in texture)
         {
             int w = t.width / _size;
@@ -35,6 +36,8 @@ public class SpriteCreater : MonoBehaviour {
                     Texture2D nt = new Texture2D(_size, _size, TextureFormat.ARGB32, false, false);
                     nt.filterMode = FilterMode.Point;
                     nt.SetPixels(pixels);
+                    //Outliner(nt);
+                   // nt.Apply();
                     _sprites.Add(Sprite.Create(nt, new Rect(0, 0, nt.width, nt.height), new Vector2(0.5f, 0.5f), _size));
                 }
 
@@ -57,5 +60,40 @@ public class SpriteCreater : MonoBehaviour {
             return _sprites[i];
         return null;
     }
+        int ThreeValueToIndex(int x, int y, int w)
+    {
+        return x + y * w;
+    }
+    void Outliner(Texture2D t)
+    {
+        Color[] tp = t.GetPixels();
+        Color[] tpo = t.GetPixels();
+        for (int c = 0; c < tp.Length; c++)
+        {
+            bool ol = false;
+            if (tp[c].a <= 0)
+            {
+                for (int i = -1; i < 2; i++)
+                {
+                    for (int j = -1; j < 2; j++)
+                    {
+                        if (i != 0 || j != 0)
+                        {
+                            int ind = ThreeValueToIndex(c + i, j,t.width);
+                            if (ind >= 0 && ind < tp.Length)
+                            {
+                                if (tp[ind].a > 0)
+                                {
+                                    ol = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
+            if (ol) tpo[c] = new Color(1, 0, 0, 1);
+        }
+        t.SetPixels(tpo);
+    }
 }

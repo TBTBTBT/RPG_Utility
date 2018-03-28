@@ -66,8 +66,11 @@ public class TodoList : EditorWindow
 		EditorGUILayout.EndHorizontal();
         
 		// display the list
-		GUIStyle itemStyle = new GUIStyle(EditorStyles.wordWrappedMiniLabel);
+		GUIStyle itemStyle = new GUIStyle(EditorStyles.wordWrappedLabel);
 		itemStyle.alignment = TextAnchor.UpperLeft;
+	    itemStyle.fontSize = 16;
+	    //itemStyle.stretchHeight = true;
+	    itemStyle.fixedHeight = 150;
 		_scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition);
 		int displayCount = 0;
 		
@@ -87,7 +90,7 @@ public class TodoList : EditorWindow
 						_listData.items[i].isComplete = true;
 					}
 					_listData.items[i].task = EditorGUILayout.TextField(item.task, itemStyle);
-					int newOwnerIndex = EditorGUILayout.Popup(owner.index, ownersToSelect,GUILayout.Width(60));
+					int newOwnerIndex = EditorGUILayout.Popup(owner.index, ownersToSelect,itemStyle,GUILayout.Width(80));
 					if(newOwnerIndex != owner.index)
 					{
 						item.owner = _listData.owners[newOwnerIndex];

@@ -147,7 +147,7 @@ public class CharacterOnField : CharacterBase
         Vector2 pos = field.IndexToPosition(ind);
        // float lerpTime = 0.3f;
 
-        if (!left && transform.position.x < pos.x - buffer)
+        if (!left && transform.position.x <= pos.x - buffer)
         {
 
             transform.position = new Vector3(Mathf.Lerp(transform.position.x, pos.x - buffer, lerpTime), transform.position.y, transform.position.z);
@@ -165,7 +165,7 @@ public class CharacterOnField : CharacterBase
             transform.position = new Vector3(Mathf.Lerp(transform.position.x, pos.x + buffer, lerpTime), transform.position.y, transform.position.z);
         }
 
-        if (!down && transform.position.y < pos.y - buffer)
+        if (!down && transform.position.y <= pos.y - buffer)
         {
             transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, pos.y - buffer, lerpTime), transform.position.z);
         }

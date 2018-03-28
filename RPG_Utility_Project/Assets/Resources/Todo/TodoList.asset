@@ -12,29 +12,32 @@ MonoBehaviour:
   m_Name: TodoList
   m_EditorClassIdentifier: 
   owners:
-  - name: Normal
+  - name: "\u65B0\u898F"
     color: {r: 1, g: 1, b: 1, a: 1}
     index: 0
-  - name: Urgent
+  - name: "\u6025\u304E"
     color: {r: 1, g: 0, b: 0, a: 1}
     index: 1
-  - name: In Progress
+  - name: "\u4F5C\u696D\u4E2D"
     color: {r: 0, g: 1, b: 1, a: 1}
     index: 2
-  - name: Note
+  - name: "\u8981\u5BFE\u5FDC"
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     index: 3
+  - name: "\u5F85\u3061"
+    color: {r: 0.516, g: 0.547, b: 0, a: 1}
+    index: 4
   items:
   - owner:
-      name: Normal
-      color: {r: 1, g: 1, b: 1, a: 1}
-      index: 0
+      name: In Progress
+      color: {r: 0, g: 1, b: 1, a: 1}
+      index: 2
     task: "\u653B\u6483\u30E2\u30FC\u30B7\u30E7\u30F3\u4F5C\u6210"
     isComplete: 0
   - owner:
-      name: Normal
-      color: {r: 1, g: 1, b: 1, a: 1}
-      index: 0
+      name: In Progress
+      color: {r: 0, g: 1, b: 1, a: 1}
+      index: 2
     task: "\u653B\u6483\u30B7\u30B9\u30C6\u30E0\u4F5C\u6210"
     isComplete: 0
   - owner:
@@ -50,15 +53,15 @@ MonoBehaviour:
     task: "\u30A8\u30CD\u30DF\u30FC\u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u4F5C\u6210"
     isComplete: 0
   - owner:
-      name: In Progress
-      color: {r: 0, g: 1, b: 1, a: 1}
-      index: 2
+      name: "\u5F85\u3061"
+      color: {r: 0.516, g: 0.547, b: 0, a: 1}
+      index: 4
     task: "\u79FB\u52D5\u5165\u529BUI\u4F5C\u6210"
     isComplete: 0
   - owner:
-      name: Normal
-      color: {r: 1, g: 1, b: 1, a: 1}
-      index: 0
+      name: "\u5F85\u3061"
+      color: {r: 0.516, g: 0.547, b: 0, a: 1}
+      index: 4
     task: "\u653B\u6483\u3001\u30A2\u30A4\u30C6\u30E0\u5165\u529BUI\u4F5C\u6210"
     isComplete: 0
   - owner:
@@ -66,4 +69,34 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
       index: 0
     task: "\u30B9\u30BF\u30FC\u30C8\u4F4D\u7F6E\u8ABF\u6574"
+    isComplete: 0
+  - owner:
+      name: "\u4F5C\u696D\u4E2D"
+      color: {r: 0, g: 1, b: 1, a: 1}
+      index: 2
+    task: "\u30AB\u30D9\u8ABF\u6574"
+    isComplete: 0
+  - owner:
+      name: Note
+      color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+      index: 3
+    task: "\u30B9\u30D7\u30E9\u30A4\u30C8\u81EA\u52D5\u751F\u6210\u306B\u3064\u3044\u3066"
+    isComplete: 0
+  - owner:
+      name: "\u8981\u5BFE\u5FDC"
+      color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+      index: 3
+    task: "\u51F8\u89D2\u3067\u306E\u3042\u305F\u308A\u5224\u5B9A\u3092\u4FEE\u6B63"
+    isComplete: 0
+  - owner:
+      name: "\u6025\u304E"
+      color: {r: 1, g: 0, b: 0, a: 1}
+      index: 1
+    task: "\u30AB\u30D9\u3092Tile,ap\u306B\u3059\u308B"
+    isComplete: 0
+  - owner:
+      name: "\u6025\u304E"
+      color: {r: 1, g: 0, b: 0, a: 1}
+      index: 1
+    task: https://qiita.com/keidroid/items/096491b7692ea7d1a4f1
     isComplete: 0

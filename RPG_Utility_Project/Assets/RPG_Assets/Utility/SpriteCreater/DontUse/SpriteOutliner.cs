@@ -4,15 +4,17 @@ using UnityEngine;
 /// <summary>
 /// どっと絵に自動でアウトラインを付ける
 /// </summary>
-public class SpriteOutliner : MonoBehaviour {
+[RequireComponent(typeof(SpriteRenderer))]
+public class SpriteOutliner : MonoBehaviour
+{
+    private SpriteRenderer outSprite;
 
+    //public int _size = 32;
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+	    outSprite = GetComponent<SpriteRenderer>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
 }

@@ -106,7 +106,7 @@ public class PlayerSample : CharacterOnField {
             //        Debug.Log(pos);
 
 
-            Gravitation(left, up, right, down, pos, 0.4f, 0.9f);
+            Gravitation(left, up, right, down, pos, 0.25f, 0.9f);
         }
     }
     #endregion

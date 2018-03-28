@@ -240,7 +240,10 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     {
         return _field[x, y];
     }
-
+    public FieldInfo GetFieldInfo(Vector2Int pos)
+    {
+        return _field[pos.x, pos.y];
+    }
 
     /// <summary>
     /// 情報を更新する !!!OnChangeFieldイベント発動!!!

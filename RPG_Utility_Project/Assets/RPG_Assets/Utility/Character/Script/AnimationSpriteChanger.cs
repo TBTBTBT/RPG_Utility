@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class AnimationSpriteChanger : SpriteCreater {
