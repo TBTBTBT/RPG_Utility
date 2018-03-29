@@ -39,6 +39,7 @@ public class SpriteCreater : MonoBehaviour {
                     //Outliner(nt);
                    // nt.Apply();
                     _sprites.Add(Sprite.Create(nt, new Rect(0, 0, nt.width, nt.height), new Vector2(0.5f, 0.5f), _size));
+                    
                 }
 
             }

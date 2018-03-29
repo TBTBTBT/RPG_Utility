@@ -28,7 +28,7 @@ public class FieldChangeSprite : MonoBehaviour
 	    }
 
 	    bool my = field.IsFieldPassable(pos);
-
+        Debug.Log(my);
         if (my)
 	    {
 	        WallDisable();

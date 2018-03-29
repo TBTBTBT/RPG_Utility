@@ -95,9 +95,9 @@ public class PlayerSample : CharacterOnField {
         {
             Vector2Int pos = field.PositionToIndex(transform.position);
             bool left = field.IsFieldPassable(pos + new Vector2Int(-1, 0));
-            bool up = field.IsFieldPassable(pos + new Vector2Int(0, -1));
+            bool up = field.IsFieldPassable(pos + new Vector2Int(0, 1));
             bool right = field.IsFieldPassable(pos + new Vector2Int(1, 0));
-            bool down = field.IsFieldPassable(pos + new Vector2Int(0, 1));
+            bool down = field.IsFieldPassable(pos + new Vector2Int(0, -1));
             l = left;
             u = up;
             d = down;
@@ -163,9 +163,11 @@ public class PlayerSample : CharacterOnField {
         string outText = "";
         foreach (CharacterParameter p in Enum.GetValues(typeof(CharacterParameter)))
         {
-            outText += p + " : " + _parameter[p] + System.Environment.NewLine;
+            //outText += p + " : " + _parameter[p] + System.Environment.NewLine;
         }
 
+        FieldManager field = FieldManager.Instance;
+        outText += field.PositionToIndex(transform.position);
         outText += _moveDirection + System.Environment.NewLine;
         outText += u + System.Environment.NewLine;
         outText += l +","+ r + System.Environment.NewLine;

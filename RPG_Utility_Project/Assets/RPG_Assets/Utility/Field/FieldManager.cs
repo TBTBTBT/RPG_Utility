@@ -48,7 +48,7 @@ public class FieldInfo
     }
     
 }
-
+#if false
 /// <summary>
 /// 見た目の処理
 /// </summary>
@@ -100,7 +100,7 @@ public class FieldViewController
         */
     }
 }
-
+#endif
 /// <summary>
 /// フィールドに関する処理を行うクラス
 /// </summary>
@@ -116,10 +116,11 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     //フィールドの見た目の大きさ倍率
     private float _extend = 1f;
 
-    public FieldViewController _fieldView;
+    //public FieldViewController _fieldView;
 
     //フィールドの内部値が変更されたときに呼び出される
     [System.NonSerialized]
+    public UnityEvent OnInitField = new UnityEvent();
     public UnityEvent OnChangeField = new UnityEvent();
 
 
@@ -128,6 +129,7 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
         base.Awake();
         FieldInit();
         //テスト用
+        /*
         for (int i = 0; i < _width; i++)
         {
             for (int j = 0; j < _height; j++)
@@ -136,8 +138,8 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
                 SetFieldState(i, j, FieldParam.IsUnlock, true);
             }
         }
-
-        _fieldView.Init();
+        */
+        //_fieldView.Init();
     }
 
     void Start () {
@@ -149,7 +151,7 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
 		
 	}
 
-    #region 外部からフィールドを変更する
+#region 外部からフィールドを変更する
 
     public void FieldGenerate(FieldInfo[,] gen)
     {
@@ -160,12 +162,12 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
                 _field[i, j] = gen[i, j];
             }
         }
-        OnChangeField.Invoke();
+        OnInitField.Invoke();
     }
 
-    #endregion
+#endregion
 
-    #region 初期化
+#region 初期化
 
     void FieldInit()
     {
@@ -179,23 +181,23 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
         }
     }
 
-    #endregion
+#endregion
 
 
-    #region 座標変換
+#region 座標変換
 
 
     public Vector2 IndexToPosition(Vector2Int pos)
     {
         float fx = (float)pos.x;
         float fy = (float)pos.y;
-        Vector2 ret = new Vector2(fx - _width / 2f, -(fy - _height / 2f)) * _extend;
+        Vector2 ret = new Vector2(fx +0.5f/*- _width / 2f*/, (fy + 0.5f/* - _height / 2f*/)) * _extend;
         return ret;
     }
     public Vector2Int PositionToIndex(Vector2 pos)
     {
-        int fx =Mathf.RoundToInt((_width / 2f + pos.x / _extend));
-        int fy = Mathf.RoundToInt(((_height / 2f - pos.y / _extend)));
+        int fx =Mathf.RoundToInt((/*_width / 2f*/ + (pos.x - 0.5f) / _extend));
+        int fy = Mathf.RoundToInt(((/*_height / 2f*/ + (pos.y-0.5f) / _extend)));
         fx = IndexModify(fx, 0, _width - 1);
         fy = IndexModify(fy, 0, _height - 1);
         Vector2Int ret = new Vector2Int(fx, fy);
@@ -208,10 +210,10 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
         if (ind > max) return max;
         return ind;
     }
-    #endregion
+#endregion
 
 
-    #region フィールド情報操作
+#region フィールド情報操作
     /// <summary>
     /// 情報を受け取る
     /// </summary>
@@ -264,9 +266,9 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
         _field[x, y].SetFieldState(param, state);
         OnChangeField.Invoke();
     }
-    #endregion
+#endregion
 
-    #region 通行可能チェック
+#region 通行可能チェック
     //通行可能か isUnlock isPassableがtrueなら通行可能
     public bool IsFieldPassable(Vector2Int pos)
     {
@@ -307,10 +309,10 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
 
 	}
 
-    #endregion
+#endregion
 
 
-    #region フィールド配列チェック
+#region フィールド配列チェック
     //trueなら大丈夫 falseならはみ出し
     public bool FieldIndexCheck(Vector2Int pos, Vector2Int move)
     {
@@ -339,5 +341,5 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     }
 
 
-    #endregion
+#endregion
 }

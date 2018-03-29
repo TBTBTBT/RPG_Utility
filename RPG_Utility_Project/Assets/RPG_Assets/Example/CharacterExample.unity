@@ -1413,10 +1413,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eedd665e371ef74b9cfe58424844380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fieldView:
-    _fieldPrefab: {fileID: 1316312341913266, guid: 357eba3acd13dea4aaf3619b56f173f4,
-      type: 2}
-    _fieldRoot: {fileID: 2024360050}
+  OnChangeField:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!4 &1934651171
 Transform:
   m_ObjectHideFlags: 0
@@ -1529,7 +1530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2024360051
 Transform:
   m_ObjectHideFlags: 0
@@ -1571,11 +1572,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4887148552020530, guid: 4f9b14a0d21934c47b4fac6ea3ea5be6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4887148552020530, guid: 4f9b14a0d21934c47b4fac6ea3ea5be6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4887148552020530, guid: 4f9b14a0d21934c47b4fac6ea3ea5be6, type: 2}
       propertyPath: m_LocalPosition.z

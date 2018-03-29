@@ -83,9 +83,9 @@ MonoBehaviour:
     task: "\u30B9\u30D7\u30E9\u30A4\u30C8\u81EA\u52D5\u751F\u6210\u306B\u3064\u3044\u3066"
     isComplete: 0
   - owner:
-      name: "\u8981\u5BFE\u5FDC"
-      color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-      index: 3
+      name: "\u6025\u304E"
+      color: {r: 1, g: 0, b: 0, a: 1}
+      index: 1
     task: "\u51F8\u89D2\u3067\u306E\u3042\u305F\u308A\u5224\u5B9A\u3092\u4FEE\u6B63"
     isComplete: 0
   - owner:
@@ -93,10 +93,10 @@ MonoBehaviour:
       color: {r: 1, g: 0, b: 0, a: 1}
       index: 1
     task: "\u30AB\u30D9\u3092Tile,ap\u306B\u3059\u308B"
-    isComplete: 0
+    isComplete: 1
   - owner:
       name: "\u6025\u304E"
       color: {r: 1, g: 0, b: 0, a: 1}
       index: 1
-    task: https://qiita.com/keidroid/items/096491b7692ea7d1a4f1
-    isComplete: 0
+    task: "\u30D1\u30C7\u30A3\u30F3\u30B0\u30B9\u30D7\u30E9\u30A4\u30C8\u751F\u6210\u30A8\u30C7\u30A3\u30BF\u3092\u4F5C\u308B"
+    isComplete: 1

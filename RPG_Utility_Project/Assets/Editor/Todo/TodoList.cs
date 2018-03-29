@@ -70,7 +70,7 @@ public class TodoList : EditorWindow
 		itemStyle.alignment = TextAnchor.UpperLeft;
 	    itemStyle.fontSize = 16;
 	    //itemStyle.stretchHeight = true;
-	    itemStyle.fixedHeight = 150;
+	    itemStyle.fixedHeight = 20;
 		_scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition);
 		int displayCount = 0;
 		
@@ -151,7 +151,7 @@ public class TodoList : EditorWindow
 						_listData.items.RemoveAt(i);
 					}	
 					EditorGUILayout.EndHorizontal();
-					EditorGUILayout.Space();
+					//EditorGUILayout.Space();
 				}					
 			}
 		}	

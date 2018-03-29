@@ -27,8 +27,8 @@ public class FieldView : MonoBehaviour//SpriteCreater
     public int _size = 32;
     void Start()
     {
-//        Init();
-        FieldSpriteInit();
+        Init();
+        //FieldSpriteInit();
     }
 
     // Update is called once per frame
