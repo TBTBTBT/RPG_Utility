@@ -29,40 +29,35 @@ public class PlayerSample : CharacterOnField {
     /// <summary>
     /// ステート一覧
     /// 要編集
+    /// 
+
+    /// <summary>
+    /// 動作のステート
     /// </summary>
-    public enum State
+    public enum BehaviourState
     {
-        //移動
         Wait,
-        WalkLeft,
-        WalkUp,
-        WalkRight,
-        WalkDown,
-        //攻撃
+        Walk,
         Attack01,
         Attack02,
-        //ダメージ
         Damage,
         Dead
-
     }
-
     /// <summary>
     /// ステート一覧の初期化
     /// </summary>
     protected override void SetStates()
     {
-        _states = new List<string>();
-        foreach (State p in Enum.GetValues(typeof(State)))
+        foreach (BehaviourState p in Enum.GetValues(typeof(BehaviourState)))
         {
-            _states.Add(p.ToString());
+            _behaviourStates.Add(p.ToString(),false);
         }
     }
 
 
     private float _moveSpeed = 0.05f;
     Vector2 _moveDirection = new Vector2(0,0);
-
+    private bool pushA = false;
     #region 入力
 
     void InputTouch()
@@ -83,10 +78,6 @@ public class PlayerSample : CharacterOnField {
 
     #endregion
 
-    private bool l = false;
-    private bool u;
-    private bool r;
-    private bool d;
     #region 移動
     void Move()
     {
@@ -98,15 +89,22 @@ public class PlayerSample : CharacterOnField {
             bool up = field.IsFieldPassable(pos + new Vector2Int(0, 1));
             bool right = field.IsFieldPassable(pos + new Vector2Int(1, 0));
             bool down = field.IsFieldPassable(pos + new Vector2Int(0, -1));
-            l = left;
-            u = up;
-            d = down;
-            r = right;
+
             transform.position += (Vector3) (Vector2) _moveDirection.normalized * _moveSpeed;
-            //        Debug.Log(pos);
-
-
             Gravitation(left, up, right, down, pos, 0.25f, 0.9f);
+
+            //ステート変更
+            if (_moveDirection.magnitude > 0)
+            {
+                ChangeBehaviourState(BehaviourState.Walk.ToString(), true);
+                ChangeBehaviourState(BehaviourState.Wait.ToString(), false);
+            }
+            else
+            {
+                ChangeBehaviourState(BehaviourState.Walk.ToString(), false);
+                ChangeBehaviourState(BehaviourState.Wait.ToString(), true);
+            }
+
         }
     }
     #endregion
@@ -144,6 +142,7 @@ public class PlayerSample : CharacterOnField {
     #endregion
     // Use this for initialization
     void Start () {
+        
     }
 	
 	// Update is called once per frame
@@ -154,10 +153,39 @@ public class PlayerSample : CharacterOnField {
         Move();
 	    ChangeDirection();
 
+	    if (pushA)
+	    {
+	        ChangeBehaviourState(BehaviourState.Attack01.ToString(), true);
+        }
+        else
+	    {
+	        ChangeBehaviourState(BehaviourState.Attack01.ToString(), false);
+        }
+
+	    pushA = false;
 	}
 
+    void PushButtonA()
+    {
+        pushA = true;
+    }
+
+    void PushButtonB()
+    {
+        Attack02();
+    }
+    public void Attack01()
+    {
+        
+        Debug.Log("Attack01()");
+    }
+
+    public void Attack02()
+    {
+        //ChangeState((int)State.Attack02);
+    }
     //デバッグ用
-#if UNITY_EDITOR
+#if false
     void OnGUI()
     {
         string outText = "";

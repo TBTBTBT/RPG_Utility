@@ -30,7 +30,6 @@ public class SpriteBufferMaker : EditorWindow
         int w = texture.width;
         Color[] c = texture.GetPixels();
         List<Color> oc = new List<Color>();
-        int ri = 0;
         for (int i = 0; i < c.Length; i++)
         {
             
@@ -80,7 +79,6 @@ public class SpriteBufferMaker : EditorWindow
                     }
                 }
             }
-            ri = i;
         }
         
         return oc.ToArray();

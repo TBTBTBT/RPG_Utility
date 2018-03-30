@@ -1,22 +1,20 @@
 fileFormatVersion: 2
-guid: fb7c1c80e394cc147b584ffb81faa64b
-timeCreated: 1521702571
+guid: 487111badeaef734881aacccbad10ed9
+timeCreated: 1522407761
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: img_hair_00_move_0
-    21300002: img_hair_00_move_1
-    21300004: img_hair_00_move_2
-    21300006: img_hair_00_move_3
-    21300008: img_hair_00_move_4
-    21300010: img_hair_00_move_5
-    21300012: img_hair_00_move_6
-    21300014: img_hair_00_move_7
+    21300000: img_human_face_00_0
+    21300002: img_human_face_00_1
+    21300004: img_human_face_00_2
+    21300006: img_human_face_00_3
+    21300008: img_human_face_00_4
+    21300010: img_human_face_00_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -30,7 +28,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -48,17 +46,17 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
@@ -85,7 +83,7 @@ TextureImporter:
   - buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 33
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -113,7 +111,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: img_hair_00_move_0
+      name: img_human_face_00_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,7 +125,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: img_hair_00_move_1
+      name: img_human_face_00_1
       rect:
         serializedVersion: 2
         x: 32
@@ -141,21 +139,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: img_hair_00_move_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: img_hair_00_move_3
+      name: img_human_face_00_2
       rect:
         serializedVersion: 2
         x: 0
@@ -169,7 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: img_hair_00_move_4
+      name: img_human_face_00_3
       rect:
         serializedVersion: 2
         x: 32
@@ -183,21 +167,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: img_hair_00_move_5
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: img_hair_00_move_6
+      name: img_human_face_00_4
       rect:
         serializedVersion: 2
         x: 0
@@ -211,7 +181,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: img_hair_00_move_7
+      name: img_human_face_00_5
       rect:
         serializedVersion: 2
         x: 32

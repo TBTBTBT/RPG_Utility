@@ -95,16 +95,16 @@ public class CharacterOnField : CharacterBase
         int state = 0;
         switch (dir)
         {
-            case MoveDirection.Left: state = 1; break;
-            case MoveDirection.Up: state = 2; break;
-            case MoveDirection.Right: state = 3; break;
-            case MoveDirection.Down: state = 4; break;
-            case MoveDirection.None: state = 0; break;
+            case MoveDirection.Left: state = 0; break;
+            case MoveDirection.Up: state = 1; break;
+            case MoveDirection.Right: state = 2; break;
+            case MoveDirection.Down: state = 3; break;
+            case MoveDirection.None: state = -1; break;
         }
         //ステート変更
-        if (_nowState != state)
+        if (_nowDirectionState != state)
         {
-            ChangeState(state);
+            ChangeDirectionState(state);
         }
     }
 

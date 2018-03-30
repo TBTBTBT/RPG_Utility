@@ -7,8 +7,10 @@ using UnityEngine;
 /// </summary>
 public class AnimationManagerBase : MonoBehaviour
 {
-    protected string[] _states;
-    protected int _nowState = 0;
+    protected Dictionary<string,bool> _behaviourStates = new Dictionary<string, bool>();
+    //protected string[] _directionStates;
+    protected int _nowDirectionState = 0;
+    protected int _nowBehaviourState = 0;
     public Animator _anim;
     public CharacterBase _animateChara;//キャラクターにアニメーションを付加する場合
     //void ChangeState(string state)
@@ -23,16 +25,22 @@ public class AnimationManagerBase : MonoBehaviour
 		//キャラクターからデータをもらう
         if (_animateChara)
         {
-            _animateChara.OnChangeState.AddListener(ChangeState);
-            _states = _animateChara.GetStates();
+            _animateChara.OnChangeBehaviourState.AddListener(ChangeBehaviourState);
+            _animateChara.OnChangeDirectionState.AddListener(ChangeDirectionState);
+            _behaviourStates = _animateChara.GetBehaviourStates();
+
         }
     }
-    protected void ChangeState(int state)
+    protected void ChangeBehaviourState(string state)
     {
-        _nowState = state;
-        if (state >= 0 && _states.Length > state)
+        if (_behaviourStates.ContainsKey(state))
         {
-            _anim.SetTrigger(_states[state]);
+            _anim.SetTrigger(state);
         }
+    }
+    protected void ChangeDirectionState(int state)
+    {
+        _nowDirectionState = state;
+        _anim.SetInteger("Direction",state);
     }
 }
