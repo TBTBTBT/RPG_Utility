@@ -9,8 +9,6 @@ public class CharacterBase : MonoBehaviour
 
     //動きのステート オーバーライドして使用
     protected Dictionary<string,bool> _behaviourStates = new Dictionary<string, bool>();
-    //向きのステート
-    //protected List<string> _directionStates;
     //現在の向きステート
     protected int _nowDirectionState = 0;
 
@@ -18,7 +16,7 @@ public class CharacterBase : MonoBehaviour
     [NonSerialized]
     public UnityEventArg<int> OnChangeDirectionState = new UnityEventArg<int>();
     [NonSerialized]
-    public UnityEventArg<string> OnChangeBehaviourState = new UnityEventArg<string>();
+    public UnityEventArg<string,bool> OnChangeBehaviourState = new UnityEventArg<string,bool>();
 
     //ステート定義(_statesの定義)をする関数 オーバーライドして使用
     protected virtual void SetStates(){}
@@ -36,8 +34,8 @@ public class CharacterBase : MonoBehaviour
         if (_behaviourStates[behaviour] != flag)
         {
             _behaviourStates[behaviour] = flag;
-            if(flag == true)
-            OnChangeBehaviourState.Invoke(behaviour);
+            //if(flag == true)
+            OnChangeBehaviourState.Invoke(behaviour,flag);
         }
     }
     protected virtual void Awake()

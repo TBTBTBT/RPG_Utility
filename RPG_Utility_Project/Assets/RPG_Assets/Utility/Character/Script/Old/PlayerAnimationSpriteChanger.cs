@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAnimationSpriteChanger : MonoBehaviour { // SpriteCreater {
     //private static int idMainTex = Shader.PropertyToID("_MainTex");
     [Header("参照するアニメーションパラメーター\n")]
-   public PlayerAnimationParamManager _animParam;
+   public PlayerAnimationManager _animParam;
    public List<SpriteManager> _sprites;
     void Start()
     {
@@ -22,7 +22,7 @@ public class PlayerAnimationSpriteChanger : MonoBehaviour { // SpriteCreater {
         foreach (var s in _sprites)
         {
             
-            s.ChangeSprite(_animParam.GetAnimationNum(snum),_animParam.GetDirection());
+            //s.ChangeSprite(_animParam.GetAnimationNum(snum),_animParam.GetDirection());
             snum++;
         }
 

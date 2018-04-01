@@ -97,12 +97,12 @@ public class PlayerSample : CharacterOnField {
             if (_moveDirection.magnitude > 0)
             {
                 ChangeBehaviourState(BehaviourState.Walk.ToString(), true);
-                ChangeBehaviourState(BehaviourState.Wait.ToString(), false);
+              //  ChangeBehaviourState(BehaviourState.Wait.ToString(), false);
             }
             else
             {
                 ChangeBehaviourState(BehaviourState.Walk.ToString(), false);
-                ChangeBehaviourState(BehaviourState.Wait.ToString(), true);
+              //  ChangeBehaviourState(BehaviourState.Wait.ToString(), true);
             }
 
         }
@@ -176,7 +176,7 @@ public class PlayerSample : CharacterOnField {
     }
     public void Attack01()
     {
-        
+		PushButtonA ();
         Debug.Log("Attack01()");
     }
 

@@ -25,7 +25,7 @@ public class AnimationManagerBase : MonoBehaviour
 		//キャラクターからデータをもらう
         if (_animateChara)
         {
-            _animateChara.OnChangeBehaviourState.AddListener(ChangeBehaviourState);
+          //  _animateChara.OnChangeBehaviourState.AddListener(ChangeBehaviourState);
             _animateChara.OnChangeDirectionState.AddListener(ChangeDirectionState);
             _behaviourStates = _animateChara.GetBehaviourStates();
 

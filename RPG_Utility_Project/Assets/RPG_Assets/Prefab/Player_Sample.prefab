@@ -19,9 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4843411066005142}
-  - component: {fileID: 95617173294762574}
-  - component: {fileID: 114800774829592504}
-  - component: {fileID: 114181521219361804}
   m_Layer: 0
   m_Name: AnimationRoot
   m_TagString: Untagged
@@ -38,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4716065161382662}
   - component: {fileID: 212127232887846410}
+  - component: {fileID: 95051614658599718}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -54,7 +52,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4887148552020530}
   - component: {fileID: 114505776481287654}
-  - component: {fileID: 114840900362750700}
   m_Layer: 0
   m_Name: Player_Sample
   m_TagString: Player
@@ -86,6 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4312272768752726}
   - component: {fileID: 212786550593644276}
+  - component: {fileID: 114051039226140248}
   m_Layer: 0
   m_Name: Hair
   m_TagString: Untagged
@@ -118,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4491125475969256}
   - component: {fileID: 212639568806238256}
+  - component: {fileID: 95120569419976700}
   m_Layer: 0
   m_Name: Leg
   m_TagString: Untagged
@@ -149,6 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4896192815994018}
   - component: {fileID: 212168283314395028}
+  - component: {fileID: 114699964262942904}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -281,16 +281,16 @@ Transform:
   m_Father: {fileID: 4333607853094232}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95617173294762574
+--- !u!95 &95051614658599718
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1047405892421534}
+  m_GameObject: {fileID: 1061447236407526}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2a0c075c8c5f09c408431a9699602f04, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -298,35 +298,41 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114181521219361804
+--- !u!95 &95120569419976700
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732324368424934}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114051039226140248
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1047405892421534}
+  m_GameObject: {fileID: 1688194322157860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd402a82978365c498472c800b59e279, type: 3}
+  m_Script: {fileID: 11500000, guid: b26fd5e7bc6c59948a97a111ede50013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animParam: {fileID: 114800774829592504}
-  _sprites:
-  - partsName: "\u9AEA"
-    texturePath: Image/Human/hair/img_hair_move_
-    sr: {fileID: 212786550593644276}
-    num: 2
-  - partsName: "\u9854"
-    texturePath: Image/Human/face/img_human_face_
-    sr: {fileID: 212127232887846410}
-    num: 1
-  - partsName: "\u4F53"
-    texturePath: Image/Human/body/img_human_body_
-    sr: {fileID: 212168283314395028}
-    num: 1
-  - partsName: "\u8DB3"
-    texturePath: Image/Human/leg/img_human_leg_
-    sr: {fileID: 212639568806238256}
-    num: 3
+  character: {fileID: 114505776481287654}
+  texturePath: Image/Human/hair/img_hair_
+  _animationFrameNum: 2
+  nodes:
+  - nodeName: Wait
+    toggle: 0
+    SpriteNum: 00000000
 --- !u!114 &114505776481287654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -338,34 +344,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5736c3c2c56a2e943ac6e71fe211f84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114800774829592504
+--- !u!114 &114699964262942904
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1047405892421534}
+  m_GameObject: {fileID: 1832822369169464}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b26fd5e7bc6c59948a97a111ede50013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hairnum: 0
-  headnum: 0
-  bodynum: 0
-  legnum: 0
---- !u!114 &114840900362750700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1097479594963514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1092c8c5ac7d4766a441d519745df67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _anim: {fileID: 95617173294762574}
-  _animateChara: {fileID: 114505776481287654}
+  character: {fileID: 114505776481287654}
+  texturePath: Image/Human/body/img_human_body_
+  _animationFrameNum: 1
+  nodes:
+  - nodeName: Attack01
+    toggle: 0
+    SpriteNum: 00000000
+  - nodeName: Attack01
+    toggle: 1
+    SpriteNum: 04000000
 --- !u!212 &212127232887846410
 SpriteRenderer:
   m_ObjectHideFlags: 1
