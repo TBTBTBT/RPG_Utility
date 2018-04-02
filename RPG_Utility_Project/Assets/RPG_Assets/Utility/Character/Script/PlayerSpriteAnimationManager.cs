@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class PlayerAnimationManager : MonoBehaviour
+public class PlayerSpriteAnimationManager : MonoBehaviour
 {
    // private Animator anim;
 	[Header("ステートを持つスクリプトと紐付け")]
@@ -40,7 +40,7 @@ public class PlayerAnimationManager : MonoBehaviour
 
 	void ChangeState(string state,bool flag){
 		int i = 0;
-		Debug.Log (state);
+		//Debug.Log (state);
 		foreach (var n in nodes) {
 			if (n.nodeName == state && n.toggle == flag) {
 				nowPlayAnimationNumber = i;
@@ -65,7 +65,19 @@ public class PlayerAnimationManager : MonoBehaviour
 		int ret = _animTime / _changeFrame;
 		return ret;
 	}
-	void Update () {
+    public float GetAnimationTime()
+    {
+        if (nowPlayAnimationNumber == 0)
+        {
+            return 0;
+        }else
+        {
+            float ret = (float) _animTime / (float) _animTimeMax;
+            return ret;
+        }
+        
+    }
+    void Update () {
 		
 
 
@@ -121,7 +133,7 @@ public class AnimationNode{
 		if (i >= 0 && i < SpriteNum.Count) {
 			return SpriteNum[i];
 		}
-		return 0;
+		return SpriteNum[0];
 	}
 }
 /*

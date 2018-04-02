@@ -161,13 +161,15 @@ public class PlayerSample : CharacterOnField {
 	    {
 	        ChangeBehaviourState(BehaviourState.Attack01.ToString(), false);
         }
-
-	    pushA = false;
 	}
 
-    void PushButtonA()
+    void BeginPushA()
     {
         pushA = true;
+    }
+    void EndPushA()
+    {
+        pushA = false;
     }
 
     void PushButtonB()
@@ -176,7 +178,6 @@ public class PlayerSample : CharacterOnField {
     }
     public void Attack01()
     {
-		PushButtonA ();
         Debug.Log("Attack01()");
     }
 

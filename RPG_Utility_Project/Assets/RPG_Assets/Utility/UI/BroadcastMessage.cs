@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BroadcastMessage : MonoBehaviour
 {
-    public string message;
-
-    public void BroadcastAllMessage()
+    public string messageDown;
+    public string messageUp;
+    public void BroadcastAllMessage(string msg)
     {
-        BroadcastAll(message);
+        BroadcastAll(msg);
     }
     public static void BroadcastAll(string fun)
     {
