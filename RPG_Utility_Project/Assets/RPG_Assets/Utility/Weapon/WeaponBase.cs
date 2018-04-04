@@ -10,16 +10,37 @@ public enum WeaponType
     Magic,
     Shield,
     Hand,
-}
-public class WeaponBase : MonoBehaviour {
+    Bomb,
+    Arrow,
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+}
+public class WeaponBase
+{
+    protected WeaponType type = WeaponType.Sword;
+    public string name;
+    public int number = 0;
+    public float dash = 10;
+    public float enemyKnockBack = 10;
+    public float damage = 10;
+    public float blank = 10;
+    public float speed = 10;
+    public float attackTime = 10;
+//    public AnimationClip;
+    public WeaponBase(int n)
+    {
+        number = n;
+    }
+    public Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Image/Weapon/weapon_00");
+    }
+    public virtual void UseWeapon()
+    {
+
+    }
+    //飛び込み技など親オブジェクトの移動が必要な場合
+    protected virtual void SendMessageParent()
+    {
+        //transform.root.SendMessage("");
+    }
 }

@@ -58,6 +58,10 @@ public class PlayerSample : CharacterOnField {
     private float _moveSpeed = 0.05f;
     Vector2 _moveDirection = new Vector2(0,0);
     private bool pushA = false;
+    private Vector2 force;
+    private int damageTime = 0;
+    private int attackTime = 0;
+    public WeaponManager _weapon;
     #region 入力
 
     void InputTouch()
@@ -77,7 +81,6 @@ public class PlayerSample : CharacterOnField {
     }
 
     #endregion
-
     #region 移動
     void Move()
     {
@@ -90,9 +93,16 @@ public class PlayerSample : CharacterOnField {
             bool right = field.IsFieldPassable(pos + new Vector2Int(1, 0));
             bool down = field.IsFieldPassable(pos + new Vector2Int(0, -1));
 
-            transform.position += (Vector3) (Vector2) _moveDirection.normalized * _moveSpeed;
+            if (damageTime == 0 && attackTime == 0)
+            {
+                transform.position += (Vector3)(Vector2)_moveDirection.normalized * _moveSpeed;
+            }
+
+            transform.position += (Vector3)force;
+            force *= 0.9f;
             Gravitation(left, up, right, down, pos, 0.25f, 0.9f);
 
+            
             //ステート変更
             if (_moveDirection.magnitude > 0)
             {
@@ -142,39 +152,92 @@ public class PlayerSample : CharacterOnField {
     #endregion
     // Use this for initialization
     void Start () {
-        
+        if (_weapon != null)
+        {
+
+        }
     }
-	
+
+    void GetWeaponInfo()
+    {
+
+    }
 	// Update is called once per frame
 	void Update ()
 	{
         InputTouch();
 	    //InputKey();
         Move();
-	    ChangeDirection();
+	    if (damageTime == 0 && attackTime == 0)
+	    {
+	        ChangeDirection();
+	    }
 
+	    if (attackTime > 0)
+	    {
+	        attackTime--;
+	        ChangeBehaviourState(BehaviourState.Attack01.ToString(), true);
+        }
+	    else
+	    {
+	        ChangeBehaviourState(BehaviourState.Attack01.ToString(), false);
+	    }
+
+        if (damageTime > 0)
+	    {
+	        damageTime--;
+	    }
 	    if (pushA)
 	    {
-	        ChangeBehaviourState(BehaviourState.Attack01.ToString(), true);
+	     //   ChangeBehaviourState(BehaviourState.Attack01.ToString(), true);
         }
         else
 	    {
-	        ChangeBehaviourState(BehaviourState.Attack01.ToString(), false);
+	       // ChangeBehaviourState(BehaviourState.Attack01.ToString(), false);
         }
+
+	    if (Input.GetKeyDown(KeyCode.Z))
+	    {
+            BeginPushA();
+	    }
+
+	    if (Input.GetKeyUp(KeyCode.Z))
+	    {
+	        EndPushA();
+
+	    }
 	}
 
     void BeginPushA()
     {
+        /*if (!pushA)
+        {
+            pushA = true;
+            Attack01();
+            force = _moveDirection.normalized * 0.1f;
+            attackTime = 20;
+        }*/
         pushA = true;
     }
     void EndPushA()
     {
-        pushA = false;
+        if (pushA)
+        {
+            pushA = false;
+            Attack01();
+            force = _moveDirection.normalized * 0.1f;
+            attackTime = 20;
+        }
+        //pushA = false;
     }
 
-    void PushButtonB()
+    void BeginPushB()
     {
-        Attack02();
+        pushA = true;
+    }
+    void EndPushB()
+    {
+        pushA = false;
     }
     public void Attack01()
     {
