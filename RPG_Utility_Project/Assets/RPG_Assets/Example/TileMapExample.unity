@@ -2176,8 +2176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileGrid: {fileID: 1894940102}
-  _floortile: {fileID: 11400000, guid: dbc3e77657a1f124caa2190902a353a6, type: 2}
-  _walltile: {fileID: 11400000, guid: 55740a9a64bc748c68a9c62a6752880d, type: 2}
+  _floortile: {fileID: 11400000, guid: ea6ba42106b5344d3bfb86ab07691a90, type: 2}
+  _walltile: {fileID: 11400000, guid: 597883a014cb9b14f8b20e7798adb7aa, type: 2}
 --- !u!156049354 &2104621178
 Grid:
   m_ObjectHideFlags: 0
