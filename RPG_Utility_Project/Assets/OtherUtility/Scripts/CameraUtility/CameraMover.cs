@@ -15,7 +15,7 @@ public class CameraMover : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 	    if (!_chaseObj)
 	    {
 	        _chaseObj = GameObject.FindWithTag("Player");

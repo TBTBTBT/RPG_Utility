@@ -17,6 +17,20 @@ public class MoveDPad : MonoBehaviour
 	    TouchManager touch = TouchManager.Instance;
 
 	    Vector2 mod = touch.GetTouchDistance();
+
+        //mod.x = Limit(mod.x, 60);
+        //mod.y = Limit(mod.y, 60);
+
         transform.localPosition = pos + (Vector3)mod;
 	}
+    float Limit(float var, float lim)
+    {
+        float l = 0;
+        l = var;
+        if (Mathf.Abs(var) > lim)
+        {
+            l = lim * Mathf.Sign(var);
+        }
+        return l;
+    }
 }

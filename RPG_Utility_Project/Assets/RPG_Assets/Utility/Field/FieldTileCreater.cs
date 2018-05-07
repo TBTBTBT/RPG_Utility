@@ -8,6 +8,7 @@ public class FieldTileCreater : MonoBehaviour
     public Tilemap _tileGrid;
 
     public TileBase _floortile;
+    public TileBase _walltile;
 	// Use this for initialization
     void FieldUpdate()
     {
@@ -17,7 +18,14 @@ public class FieldTileCreater : MonoBehaviour
         {
             for (int j = 0; j < field._height; j++)
             {
-                if(field.GetFieldState(i,j,FieldParam.IsPassable))_tileGrid.SetTile(new Vector3Int(i, j, 0), _floortile);
+                if (field.GetFieldState(i, j, FieldParam.IsPassable))
+                {
+                    _tileGrid.SetTile(new Vector3Int(i, j, 0), _floortile);
+                }
+                else
+                {
+                    _tileGrid.SetTile(new Vector3Int(i, j, 0), _walltile);
+                }
             }
         }
 

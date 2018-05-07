@@ -19,7 +19,14 @@ public class CharacterBase : MonoBehaviour
     public UnityEventArg<string,bool> OnChangeBehaviourState = new UnityEventArg<string,bool>();
 
     //ステート定義(_statesの定義)をする関数 オーバーライドして使用
-    protected virtual void SetStates(){}
+    protected void SetStates<T>()
+    {
+        foreach (T p in Enum.GetValues(typeof(T)))
+        {
+            _behaviourStates.Add(p.ToString(), false);
+        }
+    }
+
     //stateが変更されたら値を反映
     protected int ChangeDirectionState(int state)
     {
@@ -40,7 +47,6 @@ public class CharacterBase : MonoBehaviour
     }
     protected virtual void Awake()
     {
-        SetStates();
     }
     public Dictionary<string,bool> GetBehaviourStates()
     {

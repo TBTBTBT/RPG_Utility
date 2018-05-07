@@ -5,10 +5,11 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     [Header("ひもづけ")]
-    public CharacterOnField _character;
+    public RPGCharacter _character;
 
     private List<WeaponBase> _weapons = new List<WeaponBase>();
 
+    public List<GameObject> _weaponroot;
     public List<SpriteRenderer> _renderer;
 
 	// Use this for initialization
@@ -57,7 +58,7 @@ public class WeaponManager : MonoBehaviour
                 break;
         }
 
-        for ( int i = 0 ; i < _renderer.Count;i ++ )
+        for ( int i = 0 ; i < _weaponroot.Count;i ++ )
         {
             if (i % 2 != 0)
             {
@@ -67,16 +68,31 @@ public class WeaponManager : MonoBehaviour
                     z = -z;
                 }
             }
-            _renderer[i].transform.localPosition = new Vector3(
+            _weaponroot[i].transform.localPosition = new Vector3(
                 x,
-                _renderer[i].transform.localPosition.y,
+                _weaponroot[i].transform.localPosition.y,
                 z);
         }
     }
     void BeginPushA()
     {
+        Debug.Log("A");
+        Action(0);
+    }
+    void EndPushA(){
+        
+    }
+    void Action(int i){
         if (_weapons.Count > 0)
         {
+            
+            switch (_weapons[i].type)
+            {
+                case WeaponType.Sword:
+                   
+                    _weaponroot[i].transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 0, 1));
+                    break;
+            }
         }
     }
 

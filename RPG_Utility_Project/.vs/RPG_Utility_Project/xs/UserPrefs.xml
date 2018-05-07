@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{7F5DE57A-4330-2850-0304-A14C7933BBB2}|">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/SpriteGenerator/SpriteBufferMaker.cs">
+    <Files>
+      <File FileName="Assets/RPG_Assets/Utility/Field/FieldTileCreater.cs" Line="42" Column="1" />
+      <File FileName="Assets/RPG_Assets/Utility/Character/Script/PlayerSample.cs" Line="208" Column="12" />
+      <File FileName="Assets/RPG_Assets/Utility/Field/FieldManager.cs" Line="233" Column="33" />
+      <File FileName="Assets/OtherUtility/Scripts/TouchUtility/TouchManager.cs" Line="76" Column="60" />
+      <File FileName="Assets/OtherUtility/Scripts/TouchUtility/TouchInput.cs" Line="1" Column="1" />
+      <File FileName="Assets/RPG_Assets/Utility/Character/CharacterBase.cs" Line="22" Column="34" />
+      <File FileName="Assets/RPG_Assets/Utility/Field/DungeonGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets/RPG_Assets/Utility/Weapon/WeaponManager.cs" Line="93" Column="19" />
+      <File FileName="Assets/RPG_Assets/Utility/Weapon/WeaponBase.cs" Line="39" Column="9" />
+      <File FileName="Assets/RPG_Assets/Utility/Enemy/EnemyBase.cs" Line="27" Column="10" />
+      <File FileName="Assets/RPG_Assets/Utility/Character/Script/RPGCharacter.cs" Line="177" Column="15" />
+      <File FileName="Assets/OtherUtility/Scripts/CameraUtility/CameraMover.cs" Line="18" Column="11" />
+      <File FileName="Assets/RPG_Assets/Utility/UI/MoveDPad.cs" Line="20" Column="1" />
+      <File FileName="Assets/OtherUtility/Scripts/GameUtility/Singleton/Singleton.cs" Line="115" Column="1" />
+      <File FileName="Assets/Editor/SpriteGenerator/SpriteBufferMaker.cs" Line="108" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.RPG__Utility__Project PreferredExecutionTarget="Unity.Editor" />
+  <MultiItemStartupConfigurations />
+</Properties>

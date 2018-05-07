@@ -24,7 +24,8 @@ using UnityEngine;
 
 
 
-public class PlayerSample : CharacterOnField {
+public class PlayerSample : RPGCharacter
+{
 
     /// <summary>
     /// ステート一覧
@@ -43,20 +44,10 @@ public class PlayerSample : CharacterOnField {
         Damage,
         Dead
     }
-    /// <summary>
-    /// ステート一覧の初期化
-    /// </summary>
-    protected override void SetStates()
-    {
-        foreach (BehaviourState p in Enum.GetValues(typeof(BehaviourState)))
-        {
-            _behaviourStates.Add(p.ToString(),false);
-        }
-    }
 
-
-    private float _moveSpeed = 0.05f;
-    Vector2 _moveDirection = new Vector2(0,0);
+    private float _moveSpeed = 2.5f;
+    Vector2 _moveDirection = new Vector2(0, 0);
+    private Rigidbody2D rig;
     private bool pushA = false;
     private Vector2 force;
     private int damageTime = 0;
@@ -76,7 +67,7 @@ public class PlayerSample : CharacterOnField {
 
     void InputKey()
     {
-        _moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized*10;
+        _moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * 10;
 
     }
 
@@ -84,35 +75,34 @@ public class PlayerSample : CharacterOnField {
     #region 移動
     void Move()
     {
-        FieldManager field = FieldManager.Instance;
-        if (field)
+        //FieldManager field = FieldManager.Instance;
+        //if (field)
         {
+           /*
             Vector2Int pos = field.PositionToIndex(transform.position);
             bool left = field.IsFieldPassable(pos + new Vector2Int(-1, 0));
             bool up = field.IsFieldPassable(pos + new Vector2Int(0, 1));
             bool right = field.IsFieldPassable(pos + new Vector2Int(1, 0));
             bool down = field.IsFieldPassable(pos + new Vector2Int(0, -1));
-
-            if (damageTime == 0 && attackTime == 0)
+            */
+            //if (damageTime == 0 && attackTime == 0)
             {
-                transform.position += (Vector3)(Vector2)_moveDirection.normalized * _moveSpeed;
+                rig.velocity = (Vector2)_moveDirection.normalized * _moveSpeed;
             }
 
-            transform.position += (Vector3)force;
+            rig.velocity += (Vector2)force;
             force *= 0.9f;
-            Gravitation(left, up, right, down, pos, 0.25f, 0.9f);
+            //Gravitation(left, up, right, down, pos, 0.25f, 0.9f);
 
-            
+
             //ステート変更
             if (_moveDirection.magnitude > 0)
             {
                 ChangeBehaviourState(BehaviourState.Walk.ToString(), true);
-              //  ChangeBehaviourState(BehaviourState.Wait.ToString(), false);
             }
             else
             {
                 ChangeBehaviourState(BehaviourState.Walk.ToString(), false);
-              //  ChangeBehaviourState(BehaviourState.Wait.ToString(), true);
             }
 
         }
@@ -123,7 +113,7 @@ public class PlayerSample : CharacterOnField {
 
     MoveDirection AccToMoveDirection()
     {
-        float angle = MathUtil.GetAim(Vector2.zero,_moveDirection.normalized);
+        float angle = MathUtil.GetAim(Vector2.zero, _moveDirection.normalized);
         MoveDirection ret = MoveDirection.None;
         float sin = Mathf.Sin(angle * Mathf.PI / 180);
         float cos = Mathf.Cos(angle * Mathf.PI / 180);
@@ -146,12 +136,16 @@ public class PlayerSample : CharacterOnField {
     }
     void ChangeDirection()
     {
-            ChangeDirection(AccToMoveDirection());
+        ChangeDirection(AccToMoveDirection());
     }
 
     #endregion
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        rig = GetComponent<Rigidbody2D>();
+        //state初期化
+        SetStates<BehaviourState>();
         if (_weapon != null)
         {
 
@@ -162,51 +156,46 @@ public class PlayerSample : CharacterOnField {
     {
 
     }
-	// Update is called once per frame
-	void Update ()
-	{
-        InputTouch();
-	    //InputKey();
+    private void FixedUpdate()
+    {
         Move();
-	    if (damageTime == 0 && attackTime == 0)
-	    {
-	        ChangeDirection();
-	    }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        InputTouch();
+        //InputKey();
 
-	    if (attackTime > 0)
-	    {
-	        attackTime--;
-	        ChangeBehaviourState(BehaviourState.Attack01.ToString(), true);
+        if (damageTime == 0 && attackTime == 0)
+        {
+            ChangeDirection();
         }
-	    else
-	    {
-	        ChangeBehaviourState(BehaviourState.Attack01.ToString(), false);
-	    }
 
-        if (damageTime > 0)
-	    {
-	        damageTime--;
-	    }
-	    if (pushA)
-	    {
-	     //   ChangeBehaviourState(BehaviourState.Attack01.ToString(), true);
+        if (attackTime > 0)
+        {
+            attackTime--;
+            ChangeBehaviourState(BehaviourState.Attack01.ToString(), true);
         }
         else
-	    {
-	       // ChangeBehaviourState(BehaviourState.Attack01.ToString(), false);
+        {
+            ChangeBehaviourState(BehaviourState.Attack01.ToString(), false);
         }
 
-	    if (Input.GetKeyDown(KeyCode.Z))
-	    {
+        if (damageTime > 0)
+        {
+            damageTime--;
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
             BeginPushA();
-	    }
+        }
 
-	    if (Input.GetKeyUp(KeyCode.Z))
-	    {
-	        EndPushA();
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            EndPushA();
 
-	    }
-	}
+        }
+    }
 
     void BeginPushA()
     {
@@ -224,7 +213,6 @@ public class PlayerSample : CharacterOnField {
         if (pushA)
         {
             pushA = false;
-            Attack01();
             force = _moveDirection.normalized * 0.1f;
             attackTime = 20;
         }
@@ -239,15 +227,7 @@ public class PlayerSample : CharacterOnField {
     {
         pushA = false;
     }
-    public void Attack01()
-    {
-        Debug.Log("Attack01()");
-    }
-
-    public void Attack02()
-    {
-        //ChangeState((int)State.Attack02);
-    }
+    #region debug
     //デバッグ用
 #if false
     void OnGUI()
@@ -275,4 +255,5 @@ public class PlayerSample : CharacterOnField {
     }
 
 #endif
+    #endregion
 }

@@ -16,7 +16,7 @@ public enum WeaponType
 }
 public class WeaponBase
 {
-    protected WeaponType type = WeaponType.Sword;
+    public WeaponType type = WeaponType.Sword;
     public string name;
     public int number = 0;
     public float dash = 10;

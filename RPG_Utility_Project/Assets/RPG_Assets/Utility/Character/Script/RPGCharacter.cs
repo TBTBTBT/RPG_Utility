@@ -37,7 +37,7 @@ public enum CharacterParameter
 /// </summary>
 /// 
 
-public class CharacterOnField : CharacterBase
+public class RPGCharacter : CharacterBase
 {
     //touchGestureと互換性がある
     public enum MoveDirection
@@ -130,6 +130,7 @@ public class CharacterOnField : CharacterBase
 
         return moveDir;
     }
+    /*
     protected bool CanMove(bool left, bool up, bool right, bool down, Vector2Int dir)
     {
         if (!left && dir.x < 0) return false;
@@ -172,7 +173,7 @@ public class CharacterOnField : CharacterBase
 
 
     }
-
+    */
     #endregion
 
 }

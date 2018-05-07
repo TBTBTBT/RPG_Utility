@@ -124,7 +124,7 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     public UnityEvent OnChangeField = new UnityEvent();
 
 
-    void Awake()
+    protected override void Awake()
     {
         base.Awake();
         FieldInit();
