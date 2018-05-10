@@ -107,7 +107,7 @@ public class FieldViewController
 public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
 {
     [System.NonSerialized]
-    public int _width = 50;
+    public int _width = 20;
     [System.NonSerialized]
     public int _height = 50;
 

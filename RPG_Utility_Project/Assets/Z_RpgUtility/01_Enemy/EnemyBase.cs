@@ -3,25 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 public class EnemyBase : RPGCharacter {
-    float _moveSpeed = 1f;
-    Vector2 _moveDirection = new Vector2(0,0);
+    protected float _moveSpeed = 1f;
+    protected Vector2 _moveDirection = new Vector2(0,0);
     private Vector2 force = new Vector2(0, 0);
     private int damageTime = 0;
     private int attackTime = 0;
 
     private Rigidbody2D rig;
 
-    public enum BehaviourState
-    {
-        Wait,
-        Walk,
-        Jump
-    }
 
     protected virtual void Move(Vector2 playerPos){
 
         //baseの前に移動処理
-        _moveDirection = (playerPos - (Vector2)transform.position);
+       // _moveDirection = (playerPos - (Vector2)transform.position);
         //FieldManager field = FieldManager.Instance;
         //if (field)
         {
@@ -35,14 +29,7 @@ public class EnemyBase : RPGCharacter {
             force *= 0.9f;
 
             //ステート変更
-            if (_moveDirection.magnitude > 0)
-            {
-                ChangeBehaviourState(BehaviourState.Walk.ToString(), true);
-            }
-            else
-            {
-                ChangeBehaviourState(BehaviourState.Walk.ToString(), false);
-            }
+
             //古いコリジョン
             /*
             Vector2Int pos = field.PositionToIndex(transform.position);
@@ -60,9 +47,11 @@ public class EnemyBase : RPGCharacter {
 	// Use this for initialization
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
-        SetStates<BehaviourState>();
+        Init();
 	}
-	
+    protected virtual void Init(){
+        
+    }
 	// Update is called once per frame
 	void FixedUpdate () {
         GameObject p = GameObject.FindWithTag("Player");

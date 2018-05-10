@@ -5,12 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/RPG_Assets/Example/CharacterExample.unity
-    guid: ed95e101dd58bea4a8d8974191fc8b6d
   - enabled: 1
-    path: Assets/RPG_Assets/Example/TileMapExample.unity
-    guid: 061a4a9d25cba34489e187a99a7c5deb
-  - enabled: 1
-    path: Assets/OtherUtility/Manager.unity
+    path: Assets/Z_MobileUtility/Manager.unity
     guid: 9a4202b4d5b8dc1478b5d5364ae80bff
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  m_configObjects: {}

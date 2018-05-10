@@ -83,9 +83,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4887148552020530}
-  - component: {fileID: 114505776481287654}
   - component: {fileID: 58533571370021302}
   - component: {fileID: 50739417771083738}
+  - component: {fileID: 114852722684925918}
   m_Layer: 8
   m_Name: Player_Sample
   m_TagString: Player
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05072a67aed9f044ab24a18222ae34a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 114505776481287654}
+  _character: {fileID: 0}
   _weaponroot:
   - {fileID: 1855032487086470}
   - {fileID: 1064878844275058}
@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26fd5e7bc6c59948a97a111ede50013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 114505776481287654}
+  character: {fileID: 114852722684925918}
   texturePath: Image/Human/hair/img_human_hair_
   _animationFrameNum: 2
   nodes:
@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26fd5e7bc6c59948a97a111ede50013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 114505776481287654}
+  character: {fileID: 114852722684925918}
   texturePath: Image/Human/face/img_human_face_
   _animationFrameNum: 1
   nodes:
@@ -549,19 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leg: {fileID: 114762388762365762}
-  character: {fileID: 114505776481287654}
---- !u!114 &114505776481287654
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1097479594963514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5736c3c2c56a2e943ac6e71fe211f84d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weapon: {fileID: 114043759824568654}
+  character: {fileID: 114852722684925918}
 --- !u!114 &114699964262942904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -573,7 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26fd5e7bc6c59948a97a111ede50013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 114505776481287654}
+  character: {fileID: 114852722684925918}
   texturePath: Image/Human/body/img_human_body_
   _animationFrameNum: 1
   nodes:
@@ -594,7 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26fd5e7bc6c59948a97a111ede50013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 114505776481287654}
+  character: {fileID: 114852722684925918}
   texturePath: Image/Human/leg/img_human_leg_
   _animationFrameNum: 3
   nodes:
@@ -604,6 +592,18 @@ MonoBehaviour:
   - nodeName: Walk
     toggle: 1
     SpriteNum: 01000000000000000200000000000000
+--- !u!114 &114852722684925918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1097479594963514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f693dd9822dbe4684417c6e203736b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 114043759824568654}
 --- !u!212 &212058252762170040
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -23,7 +23,6 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager> {
     public Vector2? touchPosBefore = null;
     public Vector2? touchPosAnchor = null;
     public Vector2? touchPosCurrent = null;
-
     // Use this for initialization
     void Start()
     {

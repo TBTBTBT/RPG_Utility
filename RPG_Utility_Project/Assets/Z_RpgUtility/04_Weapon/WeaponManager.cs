@@ -15,6 +15,7 @@ public class WeaponManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+        //RenderDisable();
         _weapons.Add(new WeaponBase(0));
 	    _weapons.Add(new WeaponBase(0));
         for (int i = 0; i < _weapons.Count; i++)
@@ -22,7 +23,7 @@ public class WeaponManager : MonoBehaviour
 	        _renderer[i].sprite = _weapons[i].GetSprite();
 	    }
 
-	    _character.OnChangeDirectionState.AddListener(ChangeDirection);
+	    //_character.OnChangeDirectionState.AddListener(ChangeDirection);
 	}
 
     public WeaponBase WeponInfo(int i)
@@ -34,7 +35,7 @@ public class WeaponManager : MonoBehaviour
 
         return null;
     }
-    void ChangeDirection(int d)
+    public void ChangeDirection(int d)
     {
         float x = 0;
         float z = 0;
@@ -57,30 +58,39 @@ public class WeaponManager : MonoBehaviour
                 z = -1;
                 break;
         }
-
-        for ( int i = 0 ; i < _weaponroot.Count;i ++ )
+        if (d < 4)
         {
-            if (i % 2 != 0)
+            for (int i = 0; i < _weaponroot.Count; i++)
             {
-                x = -x;
-                if (d == 0 || d == 2)
+                if (i % 2 != 0)
                 {
-                    z = -z;
+                    x = -x;
+                    if (d == 0 || d == 2)
+                    {
+                        z = -z;
+                    }
                 }
+                _weaponroot[i].transform.localPosition = new Vector3(
+                    x,
+                    _weaponroot[i].transform.localPosition.y,
+                    z);
             }
-            _weaponroot[i].transform.localPosition = new Vector3(
-                x,
-                _weaponroot[i].transform.localPosition.y,
-                z);
         }
     }
     void BeginPushA()
     {
         Debug.Log("A");
         Action(0);
+        _renderer[0].enabled = true;
     }
     void EndPushA(){
-        
+        RenderDisable();
+    }
+    void RenderDisable(){
+        for (int i = 0; i < _renderer.Count; i++)
+        {
+            _renderer[i].enabled = false;
+        }
     }
     void Action(int i){
         if (_weapons.Count > 0)
@@ -95,5 +105,5 @@ public class WeaponManager : MonoBehaviour
             }
         }
     }
-
+ 
 }
