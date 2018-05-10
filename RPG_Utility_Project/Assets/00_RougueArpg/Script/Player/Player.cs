@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Player : RPGCharacter {
+public class Player : RPGCharacter ,IDamageable{
     /// <summary>
     /// ステート一覧
     /// 要編集
@@ -43,10 +43,7 @@ public class Player : RPGCharacter {
         //state初期化
         SetStates<BehaviourState>();
         _moveTo = transform.position;
-        if (_weapon != null)
-        {
 
-        }
     }
 
     #region 入力
@@ -148,11 +145,24 @@ public class Player : RPGCharacter {
     void TargetAttack(){
         if(_attackTarget){
             _moveTo = _attackTarget.transform.position;
-            if (((Vector2)transform.position - (Vector2)_attackTarget.transform.position).magnitude < _attackRange)
+            bool IsRange = ((Vector2)transform.position - (Vector2)_attackTarget.transform.position).magnitude <
+                           _attackRange;
+            if ( IsRange || attackTime > 0)
             {
+                
                 _moveTo = transform.position;
             }
 
+            if (IsRange)
+            {
+
+                if (attackTime == 0)
+                {
+                    Attack();
+
+
+                }
+            }
         }
     }
     #endregion
@@ -177,7 +187,6 @@ public class Player : RPGCharacter {
         {
             foreach (var enemy in enemies)
             {//(go) =>  ((Vector2)go.transform.position - (Vector2)transform.position).magnitude < _attackRange)){
-                Debug.Log("a");
                 _attackTarget = enemy;
                 //if((_moveTo - (Vector2)enemy.transform.position).magnitude < _attackRange)
                 //_moveTo = transform.position;
@@ -189,7 +198,18 @@ public class Player : RPGCharacter {
     private void FixedUpdate()
     {
         Move();
-        TargetAttack();
+        //TargetAttack();
+    }
+
+    void Attack()
+    {
+        if (_attackTarget)
+        {
+            Vector2 distance = _attackTarget.transform.position - transform.position;
+            attackTime = 60;
+            AttackManager.Attack(transform.position, distance.normalized * 0.1f, 10, 0.2f,false);
+            EffectManager.MoveEffect("Attack_00",transform.position,distance.normalized);
+        }
     }
     // Update is called once per frame
     void Update()
@@ -201,12 +221,9 @@ public class Player : RPGCharacter {
         //InputTouch();
         //InputKey();
         TargetAttack();
-        if (damageTime == 0 && attackTime == 0)
-        {
-            ChangeDirection();
-            ChangeWeaponState();
-        }
-
+        
+        ChangeDirection();
+        ChangeWeaponState();
         if (attackTime > 0)
         {
             attackTime--;
@@ -216,14 +233,11 @@ public class Player : RPGCharacter {
         {
             ChangeBehaviourState(BehaviourState.Attack01.ToString(), false);
         }
-
-
-
-
         if (damageTime > 0)
         {
             damageTime--;
         }
+        /*
         if (Input.GetKeyDown(KeyCode.Z))
         {
             BeginPushA();
@@ -233,7 +247,7 @@ public class Player : RPGCharacter {
         {
             EndPushA();
 
-        }
+        }*/
     }
     //use linq
     void EnemySerch(){
@@ -241,8 +255,9 @@ public class Player : RPGCharacter {
     }
 
 
+    #region old
 
-    //old
+    //old---
     void BeginPushA()
     {
         /*if (!pushA)
@@ -273,11 +288,31 @@ public class Player : RPGCharacter {
     {
         pushA = false;
     }
+    //------
+
+    #endregion
+
+
+
     void KnockBack(Vector2 f)
     {
         force += f;
 
     }
+
+    public void TakeDamage(int damage,Vector2 knockback)
+    {
+        KnockBack(knockback.normalized/10);
+        if (damageTime == 0)
+        {
+            KnockBack(knockback);
+
+            EffectManager.Effect("DamageText", transform.position + new Vector3(0, 0.5f, 0));
+            
+            damageTime = 60;
+        }
+    }
+    /*
     private void OnTriggerStay2D(Collider2D c)
     {
         if (c.tag == "Enemy")
@@ -285,6 +320,6 @@ public class Player : RPGCharacter {
             KnockBack((transform.position - c.transform.position).normalized * 5);
 //            Debug.Log("h");
         }
-    }
+    }*/
 
 }

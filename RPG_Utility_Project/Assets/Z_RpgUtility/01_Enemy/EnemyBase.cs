@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class EnemyBase : RPGCharacter {
+public class EnemyBase : RPGCharacter,IDamageable {
     protected float _moveSpeed = 1f;
     protected Vector2 _moveDirection = new Vector2(0,0);
     private Vector2 force = new Vector2(0, 0);
@@ -57,4 +57,24 @@ public class EnemyBase : RPGCharacter {
         GameObject p = GameObject.FindWithTag("Player");
         Move(p.transform.position);
 	}
+
+    public void TakeDamage(int damage,Vector2 kb)
+    {
+        KnockBack(kb);
+        EffectManager.Effect("DamageText",transform.position);
+    }
+    void KnockBack(Vector2 f)
+    {
+        force += f;
+
+    }
+    private void OnTriggerStay2D(Collider2D c)
+    {
+        IDamageable damagable = (IDamageable) c.transform.root.GetComponent(typeof(IDamageable));
+        if (c.tag == "Player")
+        {
+            if(damagable != null)
+            damagable.TakeDamage(0, -(transform.position - c.transform.position).normalized * 10);
+        }
+    }
 }
