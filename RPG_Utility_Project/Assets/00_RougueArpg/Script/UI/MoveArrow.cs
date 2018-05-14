@@ -9,7 +9,8 @@ public class MoveArrow : MonoBehaviour {
     enum State
     {
         Normal,
-        Battle
+        Battle,
+        Talk
     }
     void ChangeState(State s){
         if(_nowState != s){
@@ -19,10 +20,10 @@ public class MoveArrow : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
+        EventManager.OnTouchBegin.AddListener(ArrowMove);
         EventManager.OnTouchMove.AddListener(ArrowMove);
         EventManager.OnTouchEnd.AddListener((i)=>ArrowResize(1f));
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        Debug.Log(_player);
 
 	}
     void ArrowResize(float extend){
@@ -31,9 +32,13 @@ public class MoveArrow : MonoBehaviour {
     void ArrowMove(int i){
         ArrowResize(3f);
         if(_player){
-            if(_player.IsTarget()){
-                ChangeState(State.Battle);
-                return;
+            switch(_player.TargetType()){
+                case 1:
+                    ChangeState(State.Battle);
+                    return;
+                case 2:
+                    ChangeState(State.Talk);
+                    return;
             }
         }
         ChangeState(State.Normal);
@@ -44,7 +49,7 @@ public class MoveArrow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(_player){
-            if(_player.IsTarget()){
+            if(_player.TargetType() > 0){
                 transform.position = _player.TargetPos() + new Vector2(0,0.5f);
             }
         }

@@ -32,7 +32,9 @@ public class Player : RPGCharacter, IDamageable, IParamater
     private Vector2 force;
     private int damageTime = 0;
     private int attackTime = 0;
+
     GameObject _attackTarget;//戦闘中の敵
+    GameObject _talkTarget;
     //public WeaponManager _weapon;
 
     public int _MaxHp { get; set; }
@@ -193,9 +195,12 @@ public class Player : RPGCharacter, IDamageable, IParamater
     }
 #endregion
 #endif
-    public bool IsTarget()
+    public int TargetType()
     {
-        return _attackTarget != null;
+        int num = 0;//矢印
+        if (_talkTarget != null) num = 2;
+        if (_attackTarget != null) num = 1;
+        return num;
     }
     public Vector2 TargetPos()
     {
