@@ -13,4 +13,11 @@ public interface IParamater
     int _Attack { get; set; }
     int _Speed { get; set; }
     int _Deffence { get; set; }
+    int _Magic { get; set; }
+    int _HpRegen { get; set; }
+}
+
+public interface ITalkable
+{
+    string Talk();
 }

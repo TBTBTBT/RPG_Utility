@@ -13,13 +13,14 @@ public class EnemyBase : RPGCharacter,IDamageable,IParamater {
 
     private Rigidbody2D rig;
 
-
+    public string _Name { get; set; }
     public int _MaxHp { get; set; }
     public int _Hp { get; set; }
     public int _Attack { get; set; }
     public int _Speed { get; set; }
     public int _Deffence { get; set; }
-
+    public int _Magic { get; set; }
+    public int _HpRegen { get; set; }
     protected virtual void MoveActive(Vector2 playerPos){
 
     }
@@ -71,10 +72,18 @@ public class EnemyBase : RPGCharacter,IDamageable,IParamater {
         _Hp -= damage;
         if (_Hp <= 0)
         {
-            EffectManager.Effect("Destroy_0", transform.position);
-            Destroy(this.gameObject);
+            KillSelf();
+
+
         }
         EffectManager.EffectText("DamageText",(Vector2)transform.position + new Vector2(0,0.4f) + kb/15,""+damage);
+    }
+
+    void KillSelf()
+    {
+        MessageManager.AddMsg(" を たおした");
+        EffectManager.Effect("Destroy_0", transform.position);
+        Destroy(this.gameObject);
     }
     void KnockBack(Vector2 f)
     {

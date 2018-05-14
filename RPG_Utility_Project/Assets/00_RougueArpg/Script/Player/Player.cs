@@ -29,18 +29,19 @@ public class Player : RPGCharacter, IDamageable, IParamater
     Vector2 _moveDirection = new Vector2(0, 0);
     Vector2 _moveTo = new Vector2(0, 0);
     private Rigidbody2D rig;
-    //private bool pushA = false;
     private Vector2 force;
     private int damageTime = 0;
     private int attackTime = 0;
     GameObject _attackTarget;//戦闘中の敵
-    public WeaponManager _weapon;
+    //public WeaponManager _weapon;
 
     public int _MaxHp { get; set; }
     public int _Hp { get; set; }
     public int _Attack { get; set; }
     public int _Speed { get; set; }
     public int _Deffence { get; set; }
+    public int _Magic { get; set; }
+    public int _HpRegen { get; set; }
     // Use this for initialization
     void Start()
     {
@@ -53,7 +54,7 @@ public class Player : RPGCharacter, IDamageable, IParamater
         SetStates<BehaviourState>();
         _moveTo = transform.position;
         UISpawner.Spawn(this.gameObject, this);
-
+        Debug.Log(NameGenerator.Generate());
     }
 
     #region 入力
@@ -181,7 +182,8 @@ public class Player : RPGCharacter, IDamageable, IParamater
         }
     }
     #endregion
-    #region Weapon関係
+#if false
+#region Weapon関係
     void ChangeWeaponState()
     {
         if (_weapon != null)
@@ -189,7 +191,8 @@ public class Player : RPGCharacter, IDamageable, IParamater
             _weapon.ChangeDirection((int)AccToMoveDirection());
         }
     }
-    #endregion
+#endregion
+#endif
     public bool IsTarget()
     {
         return _attackTarget != null;
@@ -248,7 +251,7 @@ public class Player : RPGCharacter, IDamageable, IParamater
         TargetAttack();
 
         ChangeDirection();
-        ChangeWeaponState();
+        //ChangeWeaponState();
         if (attackTime > 0)
         {
             attackTime--;
@@ -265,7 +268,7 @@ public class Player : RPGCharacter, IDamageable, IParamater
     }
 
 
-    #region old
+#region old
 #if false
     //old---
     void BeginPushA()
