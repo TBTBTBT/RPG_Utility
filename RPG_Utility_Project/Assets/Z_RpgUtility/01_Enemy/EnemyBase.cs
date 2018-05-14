@@ -2,66 +2,79 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class EnemyBase : RPGCharacter,IDamageable {
+public class EnemyBase : RPGCharacter,IDamageable,IParamater {
     protected float _moveSpeed = 1f;
     protected Vector2 _moveDirection = new Vector2(0,0);
     private Vector2 force = new Vector2(0, 0);
     private int damageTime = 0;
     private int attackTime = 0;
 
+    protected bool isNotice = false;
+
     private Rigidbody2D rig;
 
 
-    protected virtual void Move(Vector2 playerPos){
+    public int _MaxHp { get; set; }
+    public int _Hp { get; set; }
+    public int _Attack { get; set; }
+    public int _Speed { get; set; }
+    public int _Deffence { get; set; }
 
-        //baseの前に移動処理
-       // _moveDirection = (playerPos - (Vector2)transform.position);
-        //FieldManager field = FieldManager.Instance;
-        //if (field)
-        {
+    protected virtual void MoveActive(Vector2 playerPos){
 
-            if (damageTime == 0 && attackTime == 0)
-            {
-                rig.velocity = (Vector2)_moveDirection.normalized * _moveSpeed;
-            }
-
-            rig.velocity += force;
-            force *= 0.9f;
-
-            //ステート変更
-
-            //古いコリジョン
-            /*
-            Vector2Int pos = field.PositionToIndex(transform.position);
-            bool left = field.IsFieldPassable(pos + new Vector2Int(-1, 0));
-            bool up = field.IsFieldPassable(pos + new Vector2Int(0, 1));
-            bool right = field.IsFieldPassable(pos + new Vector2Int(1, 0));
-            bool down = field.IsFieldPassable(pos + new Vector2Int(0, -1));
-            */
-            //Gravitation(left, up, right, down, pos, 0.25f, 0.9f);
-
-
-
-        }
+    }
+    protected virtual void MovePassive(){
+        
     }
 	// Use this for initialization
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
+        UISpawner.Spawn(this.gameObject, this);
         Init();
+        _Hp = _MaxHp;
 	}
     protected virtual void Init(){
+        
+    }
+    protected virtual void ChangeNotice(GameObject player){
         
     }
 	// Update is called once per frame
 	void FixedUpdate () {
         GameObject p = GameObject.FindWithTag("Player");
-        Move(p.transform.position);
+        if (p != null)
+        {
+            ChangeNotice(p);
+        }
+        if (p && isNotice)
+        {
+            MoveActive(p.transform.position);
+        }
+        else
+        {
+            MovePassive();
+        }
+        //move-----------
+        if (damageTime == 0 && attackTime == 0)
+        {
+            rig.velocity = (Vector2)_moveDirection.normalized * _moveSpeed;
+        }
+
+        rig.velocity += force;
+        force *= 0.9f;
+        //---------------
 	}
 
     public void TakeDamage(int damage,Vector2 kb)
     {
         KnockBack(kb);
-        EffectManager.Effect("DamageText",transform.position);
+        _Hp -= damage;
+        if (_Hp <= 0)
+        {
+            EffectManager.Effect("Destroy_0", transform.position);
+            Destroy(this.gameObject);
+        }
+        EffectManager.EffectText("DamageText",(Vector2)transform.position + new Vector2(0,0.4f) + kb/15,""+damage);
     }
     void KnockBack(Vector2 f)
     {
@@ -71,10 +84,16 @@ public class EnemyBase : RPGCharacter,IDamageable {
     private void OnTriggerStay2D(Collider2D c)
     {
         IDamageable damagable = (IDamageable) c.transform.root.GetComponent(typeof(IDamageable));
-        if (c.tag == "Player")
+        if (damagable != null)
         {
-            if(damagable != null)
-            damagable.TakeDamage(0, -(transform.position - c.transform.position).normalized * 10);
+            if (c.tag == "Player")
+            {
+
+                damagable.TakeDamage(_Attack, -(transform.position - c.transform.position).normalized * 10);
+            }
+            if(c.tag == "Enemy"){
+                KnockBack((transform.position - c.transform.position).normalized/10);
+            }
         }
     }
 }

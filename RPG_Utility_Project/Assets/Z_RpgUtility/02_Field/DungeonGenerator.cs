@@ -317,7 +317,7 @@ public class DungeonGenerator : MonoBehaviour
                 for (int dy = room.y; dy < room.y + room.height; dy++)
                 {
                     map[dx, dy].SetFieldState(FieldParam.IsPassable,true);
-                    map[dx, dy].SetFieldState(FieldParam.IsUnlock, true);
+                    //map[dx, dy].SetFieldState(FieldParam.IsUnlock, true);
                 }
             }
             return map;
@@ -418,7 +418,6 @@ public class DungeonGenerator : MonoBehaviour
             while (fromX != toX || fromY != toY)
             {
                 map[fromX, fromY].SetFieldState(FieldParam.IsPassable, true);
-                map[fromX, fromY].SetFieldState(FieldParam.IsUnlock, true);
                 if (fromX != toX && fromY != toY && UnityEngine.Random.Range(0, 2) == 0 || fromY == toY)
                 {
                     fromX += (toX - fromX) > 0 ? 1 : -1;

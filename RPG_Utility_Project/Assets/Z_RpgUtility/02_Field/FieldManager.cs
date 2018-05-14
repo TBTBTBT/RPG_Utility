@@ -10,7 +10,9 @@ using UnityEngine.Events;
 public enum FieldParam
 {
     IsPassable,//通行可能か
-    IsUnlock,  //通行可能か(可変)
+    IsEnemySpawner,//敵のスポーン地点か
+    IsShop,//ショップか
+    IsTresure,//宝箱のスポーン地点か
 }
 /// <summary>
 /// 通行できる場所や、床の状態を管理するクラス
@@ -107,7 +109,7 @@ public class FieldViewController
 public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
 {
     [System.NonSerialized]
-    public int _width = 20;
+    public int _width = 50;
     [System.NonSerialized]
     public int _height = 50;
 
@@ -278,7 +280,7 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     {
 
         if (FieldIndexCheck(x, y))
-            return GetFieldState(x,y,FieldParam.IsUnlock) && GetFieldState(x, y, FieldParam.IsPassable);
+            return GetFieldState(x, y, FieldParam.IsPassable);
         return false;
     }
 	int BoolToInt(bool b){

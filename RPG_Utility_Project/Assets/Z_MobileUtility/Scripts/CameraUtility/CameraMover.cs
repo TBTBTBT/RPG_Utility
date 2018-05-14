@@ -23,7 +23,7 @@ public class CameraMover : MonoBehaviour
 	    else
 	    {
 	        transform.position = Vector3.Lerp(transform.position,
-	            new Vector3(_chaseObj.transform.position.x,_chaseObj.transform.position.y,-10),
+	            new Vector3(_chaseObj.transform.position.x,_chaseObj.transform.position.y + 2,-10),
 	            0.2f);
 	    }
 	}

@@ -22,6 +22,7 @@ public class MoveArrow : MonoBehaviour {
         EventManager.OnTouchMove.AddListener(ArrowMove);
         EventManager.OnTouchEnd.AddListener((i)=>ArrowResize(1f));
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        Debug.Log(_player);
 
 	}
     void ArrowResize(float extend){

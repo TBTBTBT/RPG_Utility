@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/00_RougueArpg/Scene/TileMapExample.unity
+    guid: 061a4a9d25cba34489e187a99a7c5deb
+  - enabled: 1
     path: Assets/Z_MobileUtility/Manager.unity
     guid: 9a4202b4d5b8dc1478b5d5364ae80bff
   - enabled: 0
