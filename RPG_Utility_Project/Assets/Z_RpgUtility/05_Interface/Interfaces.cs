@@ -21,3 +21,19 @@ public interface ITalkable
 {
     string Talk();
 }
+
+namespace UnityEngine
+{
+    public enum TargetType
+    {
+        Attack,
+        Talk,
+        Stair
+    }
+}
+
+public interface ITargetable
+{
+
+    TargetType GetTargetType();
+}

@@ -33,8 +33,16 @@ public class Player : RPGCharacter, IDamageable, IParamater
     private int damageTime = 0;
     private int attackTime = 0;
 
-    GameObject _attackTarget;//戦闘中の敵
-    GameObject _talkTarget;
+    private GameObject _target;
+    private TargetType _targetType;
+
+    void SetTarget(TargetType type, GameObject target)
+    {
+        _target = target;
+        _targetType = type;
+    }
+ //   GameObject _attackTarget;//戦闘中の敵
+ //   GameObject _talkTarget;
     //public WeaponManager _weapon;
 
     public int _MaxHp { get; set; }
@@ -160,10 +168,10 @@ public class Player : RPGCharacter, IDamageable, IParamater
     }
     void TargetAttack()
     {
-        if (_attackTarget)
+        if (_target && _targetType == TargetType.Attack)
         {
-            _moveTo = _attackTarget.transform.position;
-            bool IsRange = ((Vector2)transform.position - (Vector2)_attackTarget.transform.position).magnitude <
+            _moveTo = _target.transform.position;
+            bool IsRange = ((Vector2)transform.position - (Vector2)_target.transform.position).magnitude <
                            _attackRange;
             if (IsRange || attackTime > 0)
             {
@@ -195,19 +203,26 @@ public class Player : RPGCharacter, IDamageable, IParamater
     }
 #endregion
 #endif
-    public int TargetType()
+    public TargetType GetTargetType()
     {
-        int num = 0;//矢印
-        if (_talkTarget != null) num = 2;
-        if (_attackTarget != null) num = 1;
-        return num;
+        return _targetType;
+    }
+
+    public bool IsTarget()
+    {
+        return _target != null;
     }
     public Vector2 TargetPos()
     {
-        return _attackTarget.transform.position;
+        return _target.transform.position;
+    }
+    bool IsContainInterface<T>(GameObject go)
+    {
+        return go.GetComponent(typeof(T)) != null;
     }
     void FindTargetEnemy()
     {
+        /*
         var enemies = GameObject.FindGameObjectsWithTag("Enemy").Where((go) => (_moveTo - (Vector2)go.transform.position).magnitude < 0.7f).OrderBy((go) => ((Vector2)transform.position - (Vector2)go.transform.position).magnitude);
         if (enemies.Count() > 0)
         {
@@ -223,7 +238,19 @@ public class Player : RPGCharacter, IDamageable, IParamater
         {
             attackTime = 0;
             _attackTarget = null;
+        }*/
+
+        GameObject target = PointerManager.GetTarget();
+        if (target != null)
+        {
+            bool attackable = IsContainInterface<IDamageable>(target);
+            bool talkable = IsContainInterface<ITalkable>(target);
+
+            TargetType type = TargetType.Attack;
+
+            SetTarget(type, target);
         }
+        
     }
     private void FixedUpdate()
     {
@@ -233,9 +260,9 @@ public class Player : RPGCharacter, IDamageable, IParamater
 
     void Attack()
     {
-        if (_attackTarget)
+        if (_target && _targetType == TargetType.Attack)
         {
-            Vector2 distance = _attackTarget.transform.position - transform.position;
+            Vector2 distance = _target.transform.position - transform.position;
             attackTime = 30;
             AttackManager.Attack(transform.position, distance.normalized * 0.1f, 10, 0.2f,_Attack, false);
             EffectManager.MoveEffect("Attack_0", transform.position + new Vector3(0, 0.15f, 0), distance.normalized);

@@ -61,7 +61,7 @@ public class DungeonGenerator : MonoBehaviour
         // 通路を描画
         foreach (var passage in passages)
         {
-            map = passage.WriteToMap(map);
+            map = passage.WriteToMap(map,2);
         }
 
         return map;
@@ -409,7 +409,7 @@ public class DungeonGenerator : MonoBehaviour
         /// </summary>
         /// <returns>The to map.</returns>
         /// <param name="map">Map.</param>
-        public FieldInfo[,] WriteToMap(FieldInfo[,] map)
+        public FieldInfo[,] WriteToMap(FieldInfo[,] map,int width)
         {
             var fromX = UnityEngine.Random.Range(areas[0].room.x, areas[0].room.x + areas[0].room.width);
             var fromY = UnityEngine.Random.Range(areas[0].room.y, areas[0].room.y + areas[0].room.height);
@@ -417,7 +417,15 @@ public class DungeonGenerator : MonoBehaviour
             var toY = UnityEngine.Random.Range(areas[1].room.y, areas[1].room.y + areas[1].room.height);
             while (fromX != toX || fromY != toY)
             {
-                map[fromX, fromY].SetFieldState(FieldParam.IsPassable, true);
+                for (int i = 0; i < width; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        if(map.GetLength(0) - 1 > fromX + i && map.GetLength(1) -1 > fromY + j)
+                        map[fromX+i, fromY+j].SetFieldState(FieldParam.IsPassable, true);
+                    }
+                }
+
                 if (fromX != toX && fromY != toY && UnityEngine.Random.Range(0, 2) == 0 || fromY == toY)
                 {
                     fromX += (toX - fromX) > 0 ? 1 : -1;

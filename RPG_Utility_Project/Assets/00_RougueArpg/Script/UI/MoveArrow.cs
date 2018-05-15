@@ -19,6 +19,7 @@ public class MoveArrow : MonoBehaviour {
         }
     }
 	// Use this for initialization
+    //Todo:PlayerManager作成してシングルトンからplayerを取得してくる
 	void Start () {
         EventManager.OnTouchBegin.AddListener(ArrowMove);
         EventManager.OnTouchMove.AddListener(ArrowMove);
@@ -30,26 +31,31 @@ public class MoveArrow : MonoBehaviour {
         transform.localScale = new Vector3(extend,extend,1);
     }
     void ArrowMove(int i){
-        ArrowResize(3f);
-        if(_player){
-            switch(_player.TargetType()){
-                case 1:
-                    ChangeState(State.Battle);
-                    return;
-                case 2:
-                    ChangeState(State.Talk);
-                    return;
+        if (i == 0)
+        {
+            ArrowResize(3f);
+            if (_player)
+            {
+                switch (_player.GetTargetType())
+                {
+                    case TargetType.Attack:
+                        ChangeState(State.Battle);
+                        return;
+                    case TargetType.Talk:
+                        ChangeState(State.Talk);
+                        return;
+                }
             }
-        }
-        ChangeState(State.Normal);
-        Vector2 touch = (Vector2)TouchManager.Instance.GetTouchWorldPos(0);
-        transform.position = touch;
 
+            ChangeState(State.Normal);
+            Vector2 touch = (Vector2)TouchManager.Instance.GetTouchWorldPos(0);
+            transform.position = touch;
+        }
     }
 	// Update is called once per frame
 	void Update () {
         if(_player){
-            if(_player.TargetType() > 0){
+            if(_player.IsTarget()){
                 transform.position = _player.TargetPos() + new Vector2(0,0.5f);
             }
         }

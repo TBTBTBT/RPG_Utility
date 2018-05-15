@@ -36,7 +36,7 @@ public class EnemyManager : SingletonMonoBehaviourCanDestroy<EnemyManager> {
                 if ((e.transform.position - player.transform.position).magnitude > range)
                 {
                     Destroy(e.gameObject);
-                    Debug.Log("Despawn");
+                    //Debug.Log("Despawn");
                 }
             }else{
                 Debug.Log("n");
@@ -52,7 +52,7 @@ public class EnemyManager : SingletonMonoBehaviourCanDestroy<EnemyManager> {
             }
             DeSpawn(12);
             _spawnEnemies.RemoveAll(item => item == null);
-            Debug.Log("enemies : " + _spawnEnemies.Count);
+            //Debug.Log("enemies : " + _spawnEnemies.Count);
             if (player)
             {
                 float len = 7;
@@ -62,7 +62,7 @@ public class EnemyManager : SingletonMonoBehaviourCanDestroy<EnemyManager> {
                 {
                     Spawn(0, pos);
                 }
-                Debug.Log("enemies : " + _spawnEnemies.Count);
+               // Debug.Log("enemies : " + _spawnEnemies.Count);
             }
             yield return new WaitForSeconds(spawnRatio);
         }

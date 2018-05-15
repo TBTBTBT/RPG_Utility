@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class EnemyBase : RPGCharacter,IDamageable,IParamater {
+public class EnemyBase : RPGCharacter,IDamageable,IParamater,ITargetable
+{
     protected float _moveSpeed = 1f;
     protected Vector2 _moveDirection = new Vector2(0,0);
     private Vector2 force = new Vector2(0, 0);
@@ -21,12 +22,24 @@ public class EnemyBase : RPGCharacter,IDamageable,IParamater {
     public int _Deffence { get; set; }
     public int _Magic { get; set; }
     public int _HpRegen { get; set; }
+
+
+    #region ITarget
+
+    public TargetType GetTargetType()
+    {
+        TargetType t = TargetType.Attack;
+        return t;
+    }
+
+    #endregion
     protected virtual void MoveActive(Vector2 playerPos){
 
     }
     protected virtual void MovePassive(){
         
     }
+
 	// Use this for initialization
 	void Start () {
         rig = GetComponent<Rigidbody2D>();

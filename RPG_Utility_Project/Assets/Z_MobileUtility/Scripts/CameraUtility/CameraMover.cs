@@ -8,8 +8,9 @@ public class CameraMover : MonoBehaviour
     public Camera cam;
 
     [NonSerialized] private GameObject _chaseObj;
-	// Use this for initialization
-	void Start ()
+
+    //Todo:PlayerManager作成してシングルトンからplayerを取得してくる
+    void Start ()
 	{
 	    //_chaseObj = GameObject.FindWithTag("Player");
 	}
