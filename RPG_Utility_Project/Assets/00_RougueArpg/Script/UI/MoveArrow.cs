@@ -38,16 +38,19 @@ public class MoveArrow : MonoBehaviour {
             {
                 switch (_player.GetTargetType())
                 {
+                    case TargetType.None:
+                        ChangeState(State.Normal);
+                        break;
                     case TargetType.Attack:
                         ChangeState(State.Battle);
-                        return;
+                        break;
                     case TargetType.Talk:
                         ChangeState(State.Talk);
-                        return;
+                        break;
                 }
             }
 
-            ChangeState(State.Normal);
+            
             Vector2 touch = (Vector2)TouchManager.Instance.GetTouchWorldPos(0);
             transform.position = touch;
         }

@@ -109,9 +109,9 @@ public class FieldViewController
 public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
 {
     [System.NonSerialized]
-    public int _width = 50;
+    public int _width = 30;
     [System.NonSerialized]
-    public int _height = 50;
+    public int _height = 30;
 
     private FieldInfo[,] _field;
 
@@ -124,12 +124,14 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     [System.NonSerialized]
     public UnityEvent OnInitField = new UnityEvent();
     public UnityEvent OnChangeField = new UnityEvent();
-
+    public RoomSettings roomSettings;
 
     protected override void Awake()
     {
         base.Awake();
         FieldInit();
+
+
         //テスト用
         /*
         for (int i = 0; i < _width; i++)
@@ -145,7 +147,10 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     }
 
     void Start () {
-		
+        FieldGenerate(DungeonGenerator2.Generate(RoomType.Room,
+                                                 roomSettings,
+                                                 new Vector2Int(_width, _height),
+                                                 new Vector2Int(_width/2, _height/2)));
 	}
 	
 

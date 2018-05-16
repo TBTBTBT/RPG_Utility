@@ -24,20 +24,22 @@ public class DungeonGenerator : MonoBehaviour
         public int bigRoomRate;
         [Range(1, 10)]
         public int maxWallThicknessInArea;
-    }
 
+    }
+    [Range(1, 3)]
+    public int roadWidth;
     [SerializeField]
 
 
     void Start()
     {
         FieldManager field = FieldManager.Instance;
-        field.FieldGenerate(Generate());
+        //field.FieldGenerate(Generate(field._width/2,field._height/2));
     }
     /// <summary>
     /// ダンジョンマップを生成します
     /// </summary>
-    public FieldInfo[,] Generate()
+    public FieldInfo[,] Generate(int x,int y)
     {
         FieldManager field = FieldManager.Instance;
         FieldInfo[,] map = new FieldInfo[field._width, field._height];
@@ -50,18 +52,21 @@ public class DungeonGenerator : MonoBehaviour
         }
         var baseArea = new Area(0, 0, field._width, field._height, roomSettings);
         // Areaを分割
-        var dividedAreas = baseArea.Divide();
+        var dividedAreas = baseArea.Divide().ToList();
+        //.Insert(0,new Area(x - 1, y - 1, 3,3, roomSettings));
         // Areaを描画
+        /*
         foreach (var area in dividedAreas)
         {
             map = area.WriteToMap(map);
         }
+*/
         // Area同士を繋ぐ通路を作る
-        var passages = GeneratePassagesByArea(dividedAreas);
+        var passages = GeneratePassagesByArea(dividedAreas.ToArray());
         // 通路を描画
         foreach (var passage in passages)
         {
-            map = passage.WriteToMap(map,2);
+            map = passage.WriteToMap(map,roadWidth);
         }
 
         return map;

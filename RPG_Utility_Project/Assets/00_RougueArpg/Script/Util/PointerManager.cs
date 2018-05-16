@@ -67,7 +67,9 @@ public class PointerManager : SingletonMonoBehaviourCanDestroy<PointerManager>
 
     public static GameObject GetTarget()
     {
+        if(Instance)
         return Instance._target;
+        return null;
     }
  
 }

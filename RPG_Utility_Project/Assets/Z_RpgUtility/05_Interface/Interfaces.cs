@@ -26,6 +26,7 @@ namespace UnityEngine
 {
     public enum TargetType
     {
+        None,
         Attack,
         Talk,
         Stair

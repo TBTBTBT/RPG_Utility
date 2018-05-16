@@ -241,16 +241,17 @@ public class Player : RPGCharacter, IDamageable, IParamater
         }*/
 
         GameObject target = PointerManager.GetTarget();
+        TargetType type = TargetType.None;
         if (target != null)
         {
             bool attackable = IsContainInterface<IDamageable>(target);
             bool talkable = IsContainInterface<ITalkable>(target);
+            type = TargetType.Attack;
 
-            TargetType type = TargetType.Attack;
 
-            SetTarget(type, target);
+
         }
-        
+        SetTarget(type, target);
     }
     private void FixedUpdate()
     {
