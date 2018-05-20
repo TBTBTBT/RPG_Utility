@@ -41,7 +41,7 @@ public class PointerManager : SingletonMonoBehaviourCanDestroy<PointerManager>
             {
                 if (h.collider != null)
                 {
-                    ITargetable target = (ITargetable)h.collider.transform.root.GetComponent(typeof(ITargetable));
+                    ITargetable target = h.collider.transform.root.GetInterface<ITargetable>();
                     if (target != null)
                     {
 //                        Debug.Log("HitTarget");

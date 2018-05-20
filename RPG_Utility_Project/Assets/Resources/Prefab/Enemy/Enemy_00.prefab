@@ -241,6 +241,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03c7adc08193410a90e2011a03f6774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemTable:
+  - type: 1
+    id: 0
+    minnum: 1
+    maxnum: 5
   _maxMoveSpeed: 2
   _quick: 0.95
   _jumpRoot: {fileID: 1308946532342356}

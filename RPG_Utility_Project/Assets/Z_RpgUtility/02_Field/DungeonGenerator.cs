@@ -34,7 +34,7 @@ public class DungeonGenerator : MonoBehaviour
     void Start()
     {
         FieldManager field = FieldManager.Instance;
-        //field.FieldGenerate(Generate(field._width/2,field._height/2));
+        field.FieldGenerate(Generate(field._width/2,field._height/2));
     }
     /// <summary>
     /// ダンジョンマップを生成します
@@ -55,12 +55,12 @@ public class DungeonGenerator : MonoBehaviour
         var dividedAreas = baseArea.Divide().ToList();
         //.Insert(0,new Area(x - 1, y - 1, 3,3, roomSettings));
         // Areaを描画
-        /*
+
         foreach (var area in dividedAreas)
         {
             map = area.WriteToMap(map);
         }
-*/
+
         // Area同士を繋ぐ通路を作る
         var passages = GeneratePassagesByArea(dividedAreas.ToArray());
         // 通路を描画

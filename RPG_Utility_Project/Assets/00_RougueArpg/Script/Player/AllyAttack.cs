@@ -11,8 +11,9 @@ public class AllyAttack : MonoBehaviour
     private bool _penetration = false;
     int _attack = 0;
     public CircleCollider2D _collision;
+    GameObject _attacker;
 
-    public void SetAttack( Vector2 move, int time, float rad,int attack,bool penet)
+    public void SetAttack( Vector2 move, int time, float rad,int attack,bool penet,GameObject attacker)
     {
         _move = move;
         _time = time;
@@ -20,6 +21,7 @@ public class AllyAttack : MonoBehaviour
         _collision.radius = _radius;
         _penetration = penet;
         _attack = attack;
+        _attacker = attacker;
     }
 	// Update is called once per frame
 	void Update ()
@@ -33,13 +35,14 @@ public class AllyAttack : MonoBehaviour
 	}
     private void OnTriggerEnter2D(Collider2D c)
     {
-        IDamageable damagable = (IDamageable)c.transform.root.GetComponent(typeof(IDamageable));
-        if (c.tag == "Enemy")
+        c.transform.root.GetInterface<IDamageable>((damagable) =>
         {
-            if (damagable != null)
-                damagable.TakeDamage(_attack, -(transform.position - c.transform.position).normalized * 5);
+            if (c.tag == "Enemy")
+            {
+                damagable.TakeDamage(_attack, -(transform.position - c.transform.position).normalized * 5,_attacker);
 
-            if(!_penetration)Destroy(gameObject);
-        }
+                if (!_penetration) Destroy(gameObject);
+            }
+        });
     }
 }

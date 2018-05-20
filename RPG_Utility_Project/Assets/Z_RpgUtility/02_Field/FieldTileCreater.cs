@@ -29,8 +29,6 @@ public class FieldTileCreater : MonoBehaviour
             }
         }
 
-   
-	   
 	}
 	
 	// Update is called once per frame

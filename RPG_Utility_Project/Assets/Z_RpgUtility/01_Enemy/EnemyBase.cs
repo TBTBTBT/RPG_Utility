@@ -5,14 +5,12 @@ using System;
 public class EnemyBase : RPGCharacter,IDamageable,IParamater,ITargetable
 {
     protected float _moveSpeed = 1f;
-    protected Vector2 _moveDirection = new Vector2(0,0);
-    private Vector2 force = new Vector2(0, 0);
+
     private int damageTime = 0;
     private int attackTime = 0;
 
     protected bool isNotice = false;
 
-    private Rigidbody2D rig;
 
     public string _Name { get; set; }
     public int _MaxHp { get; set; }
@@ -23,7 +21,8 @@ public class EnemyBase : RPGCharacter,IDamageable,IParamater,ITargetable
     public int _Magic { get; set; }
     public int _HpRegen { get; set; }
 
-
+    public List<ItemTable> _itemTable;
+    protected GameObject _target;
     #region ITarget
 
     public TargetType GetTargetType()
@@ -42,7 +41,7 @@ public class EnemyBase : RPGCharacter,IDamageable,IParamater,ITargetable
 
 	// Use this for initialization
 	void Start () {
-        rig = GetComponent<Rigidbody2D>();
+        
         UISpawner.Spawn(this.gameObject, this);
         Init();
         _Hp = _MaxHp;
@@ -55,14 +54,14 @@ public class EnemyBase : RPGCharacter,IDamageable,IParamater,ITargetable
     }
 	// Update is called once per frame
 	void FixedUpdate () {
-        GameObject p = GameObject.FindWithTag("Player");
-        if (p != null)
+        //_ = GameObject.FindWithTag("Player");
+        if (_target != null)
         {
-            ChangeNotice(p);
+            ChangeNotice(_target);
         }
-        if (p && isNotice)
+        if (_target && isNotice)
         {
-            MoveActive(p.transform.position);
+            MoveActive(_target.transform.position);
         }
         else
         {
@@ -79,7 +78,7 @@ public class EnemyBase : RPGCharacter,IDamageable,IParamater,ITargetable
         //---------------
 	}
 
-    public void TakeDamage(int damage,Vector2 kb)
+    public void TakeDamage(int damage,Vector2 kb, GameObject attacker)
     {
         KnockBack(kb);
         _Hp -= damage;
@@ -89,6 +88,7 @@ public class EnemyBase : RPGCharacter,IDamageable,IParamater,ITargetable
 
 
         }
+        _target = attacker;
         EffectManager.EffectText("DamageText",(Vector2)transform.position + new Vector2(0,0.4f) + kb/15,""+damage);
     }
 
@@ -96,6 +96,7 @@ public class EnemyBase : RPGCharacter,IDamageable,IParamater,ITargetable
     {
         MessageManager.AddMsg(" を たおした");
         EffectManager.Effect("Destroy_0", transform.position);
+        ItemManager.Spawn(transform.position, _itemTable);
         Destroy(this.gameObject);
     }
     void KnockBack(Vector2 f)
@@ -105,17 +106,22 @@ public class EnemyBase : RPGCharacter,IDamageable,IParamater,ITargetable
     }
     private void OnTriggerStay2D(Collider2D c)
     {
-        IDamageable damagable = (IDamageable) c.transform.root.GetComponent(typeof(IDamageable));
-        if (damagable != null)
-        {
-            if (c.tag == "Player")
+        //Damageableに対して処理
+        c.transform.root.GetInterface<IDamageable>((damagable)=>{
+            if (c.tag == "Player" || c.tag == "NPC")
             {
 
-                damagable.TakeDamage(_Attack, -(transform.position - c.transform.position).normalized * 10);
+                damagable.TakeDamage(_Attack, -(transform.position - c.transform.position).normalized * 10,gameObject);
             }
-            if(c.tag == "Enemy"){
-                KnockBack((transform.position - c.transform.position).normalized/10);
+            if (c.tag == "Enemy")
+            {
+                KnockBack((transform.position - c.transform.position).normalized / 10);
             }
-        }
+        });
+       // IDamageable damagable = c.transform.root.GetInterface<IDamageable>();
+        //if (damagable != null)
+        //{
+            
+        //}
     }
 }

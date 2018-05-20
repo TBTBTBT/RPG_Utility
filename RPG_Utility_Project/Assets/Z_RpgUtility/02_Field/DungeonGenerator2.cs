@@ -33,6 +33,7 @@ public class DungeonGenerator2 : MonoBehaviour
         switch (roomType)
         {
             case RoomType.Maze:
+                
                 return GenerateMaze(size, center);
 
             case RoomType.Room:
@@ -119,14 +120,19 @@ public class DungeonGenerator2 : MonoBehaviour
     public static FieldInfo[,] GenerateRoom(RoomSettings room, Vector2Int size, Vector2Int center)
     {
         FieldInfo[,] map = Init(size);
-        Block[,] b = InitBlock(size);
+        if (IsExistIndex<FieldInfo>(map, center))
+        {
+            CreateMaze(map, center);
+        }
+
+        //Block[,] b = InitBlock(size);
 
         List<Area> area = DevideArea(size, room);
 
         CreateRoom(area,room);
         area.ForEach(a => { Debug.Log(a.start); });
         WriteToMap( map,area);
-        CreateRoad(map, area);
+       // CreateRoad(map, area);
         return map;
     }
     static Block[,] InitBlock(Vector2Int size){
@@ -188,6 +194,11 @@ public class DungeonGenerator2 : MonoBehaviour
         });
     }
     static void CreateRoad(FieldInfo[,] map,List<Area> area){
+
+        //x to y
+
+        List<Vector2Int> road = new List<Vector2Int>();
+
         for (int i = 0; i < area.Count;i++){
             if (i < area.Count - 1)
             {

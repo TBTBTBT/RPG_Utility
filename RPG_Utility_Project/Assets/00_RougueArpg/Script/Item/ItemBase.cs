@@ -2,27 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBase : MonoBehaviour {
-    enum Type{
-        Coin,
-        Item,
-        Weapon,
-        Equip
-    }
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+public abstract class ItemBase : MonoBehaviour {
+    public ItemType _type;
+    protected int _num = 0;
+    protected int _id = 0;
     private void OnTriggerStay2D(Collider2D c)
     {
         if(c.tag == "Player"){
-            Destroy(this.gameObject);
+            c.transform.root.GetInterface<ICanPickItem>((picker) =>
+            {
+                picker.GetItem(_type, _id,_num);
+                Destroy(this.gameObject);
+            });
         }
     }
+    public abstract void Spawn(ItemType type, int id, int num);
 }

@@ -25,9 +25,12 @@ public class PlayerSpriteAnimationManager : MonoBehaviour
     // Use this for initialization
     void Start ()
 	{
-	   // anim = GetComponent<Animator>();
-		character.OnChangeBehaviourState.AddListener(ChangeState);
-		character.OnChangeDirectionState.AddListener(ChangeDirection);
+        if (character)
+        {
+            // anim = GetComponent<Animator>();
+            character.OnChangeBehaviourState.AddListener(ChangeState);
+            character.OnChangeDirectionState.AddListener(ChangeDirection);
+        }
 		render = GetComponent<SpriteRenderer>();
 		LoadSprite();
 	}

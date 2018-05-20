@@ -11,6 +11,7 @@ public class Billboard : MonoBehaviour,ITalkable, ITargetable
     public string talk = "";
     public string Talk()
     {
+        MessageManager.Talk(talk);
         return talk;
     }
 }

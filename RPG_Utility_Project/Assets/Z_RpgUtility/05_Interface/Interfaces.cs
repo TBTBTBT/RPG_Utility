@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamage(int damage,Vector2 knockback );
+    void TakeDamage(int damage, Vector2 knockback,GameObject attacker = null);
 }
 public interface IParamater
 {
@@ -31,10 +31,22 @@ namespace UnityEngine
         Talk,
         Stair
     }
+    public enum ItemType
+    {
+        None,
+        Coin,
+        Weapon,
+        Item
+    }
 }
 
 public interface ITargetable
 {
 
     TargetType GetTargetType();
+}
+public interface ICanPickItem
+{
+    bool GetItem(ItemType type,int id,int num);
+
 }

@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-
+/*
 
 /// <summary>
 /// キャラクターのパラメーター
@@ -25,7 +25,7 @@ public enum CharacterParameter
 
 }
 
-
+*/
 
 
 /// <summary>
@@ -37,7 +37,7 @@ public enum CharacterParameter
 /// </summary>
 /// 
 
-public class RPGCharacter : CharacterBase
+public abstract class RPGCharacter : CharacterBase
 {
     //touchGestureと互換性がある
     public enum MoveDirection
@@ -48,45 +48,22 @@ public class RPGCharacter : CharacterBase
         Down = 3,
         None = 99,
     }
+    protected Vector2 _moveDirection = new Vector2(0, 0);
+
+    protected Rigidbody2D rig;
+    protected Vector2 force;
 
     protected bool isArrive = true;
 
-    protected Dictionary<CharacterParameter, int> _parameter = new Dictionary<CharacterParameter, int>();
+   // protected Dictionary<CharacterParameter, int> _parameter = new Dictionary<CharacterParameter, int>();
 
     protected override void Awake()
     {
         base.Awake();
-        InitParameter();
-    }
-    #region パラメーター操作
-
-    void InitParameter()
-    {
-        foreach(CharacterParameter p in Enum.GetValues(typeof(CharacterParameter)))
-        {
-          
-            _parameter.Add(p,0);
-           
-        }
-    }
-    void SetParameter(CharacterParameter param,int num)
-    {
-        if (_parameter.ContainsKey(param))
-        {
-            _parameter[param] = num;
-        }
+        rig = GetComponent<Rigidbody2D>();
+        //InitParameter();
     }
 
-    int GetParameter(CharacterParameter param)
-    {
-        if (_parameter.ContainsKey(param))
-        {
-            return _parameter[param];
-        }
-
-        return 0;
-    }
-    #endregion
     #region 移動
     //向きを変える
     protected void ChangeDirection(MoveDirection dir)
@@ -130,6 +107,39 @@ public class RPGCharacter : CharacterBase
 
         return moveDir;
     }
+
+    #endregion
+    /*
+#region パラメーター操作
+
+void InitParameter()
+{
+    foreach(CharacterParameter p in Enum.GetValues(typeof(CharacterParameter)))
+    {
+
+        _parameter.Add(p,0);
+
+    }
+}
+void SetParameter(CharacterParameter param,int num)
+{
+    if (_parameter.ContainsKey(param))
+    {
+        _parameter[param] = num;
+    }
+}
+
+int GetParameter(CharacterParameter param)
+{
+    if (_parameter.ContainsKey(param))
+    {
+        return _parameter[param];
+    }
+
+    return 0;
+}
+#endregion
+*/
     /*
     protected bool CanMove(bool left, bool up, bool right, bool down, Vector2Int dir)
     {
@@ -174,8 +184,6 @@ public class RPGCharacter : CharacterBase
 
     }
     */
-    #endregion
-
 }
 /*
     public MoveDirection IntToDirection(int dir)

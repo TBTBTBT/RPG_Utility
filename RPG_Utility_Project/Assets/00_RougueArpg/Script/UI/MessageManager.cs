@@ -9,16 +9,41 @@ public class MessageManager : SingletonMonoBehaviourCanDestroy<MessageManager>
     private string msgLog = "";
     [Header("Msgボックス")]
     public Text _msgBox;
-
-    [Header("Msgボックスのアニメーター")]
-    public Animator _animator;
-
+    //[Header("Msgボックスのアニメーター")]
+    public Animator _msgAnimator;
     [Header("表示時間")]
-    public float dispTime = 5;
+    public float dispTime = 3;
+
+
+    [Header("Talkボックス")]
+
+    public Text _talkBox;
+    public Animator _talkAnimator;
+    [Header("表示時間")]
+    public float talkDispTime = 3;
+
+
+    public static void Talk(string msg){
+        if (Instance)
+        {
+            Instance._talkAnimator.SetTrigger("Open");
+            if (Instance.singleCoroutineTalk != null) Instance.StopCoroutine(Instance.singleCoroutineTalk);
+            Instance.singleCoroutineTalk  = Instance.StartCoroutine(Instance.DispTalk());
+        }
+    }
+    private Coroutine singleCoroutineTalk = null;
+    IEnumerator DispTalk()
+    {
+        yield return new WaitForSeconds(talkDispTime);
+        _talkAnimator.SetTrigger("Close");
+    }
     public static void AddMsg(string msg)
     {
-       Instance.AddMessage(msg);
-        Instance.UpdateMsgBox();
+        if (Instance)
+        {
+            Instance.AddMessage(msg);
+            Instance.UpdateMsgBox();
+        }
     }
 
     void AddMessage(string msg)
@@ -36,7 +61,7 @@ public class MessageManager : SingletonMonoBehaviourCanDestroy<MessageManager>
 
     void UpdateMsgBox()
     {
-        _animator.SetTrigger("Open");
+        _msgAnimator.SetTrigger("Open");
         _msgBox.text = "";
         foreach (var str in _message)
         {
@@ -55,6 +80,6 @@ public class MessageManager : SingletonMonoBehaviourCanDestroy<MessageManager>
         {
             msgLog += _message.Dequeue() + "\n";
         }
-        _animator.SetTrigger("Close");
+        _msgAnimator.SetTrigger("Close");
     }
 }

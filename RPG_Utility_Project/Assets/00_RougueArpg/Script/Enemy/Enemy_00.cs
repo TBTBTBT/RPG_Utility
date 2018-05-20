@@ -22,7 +22,7 @@ public class Enemy_00 : EnemyBase
     protected override void ChangeNotice(GameObject player)
 	{
         if (!player) return;
-        if(((Vector2)player.transform.position - (Vector2)transform.position).magnitude < 1)
+        //if(((Vector2)player.transform.position - (Vector2)transform.position).magnitude < 1)
         isNotice = true;
 	}
 	protected override void MoveActive(Vector2 playerPos)
