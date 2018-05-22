@@ -147,7 +147,7 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     }
 
     void Start () {
-        FieldGenerate(DungeonGenerator3.Generate(new Vector2Int(_width, _height)));
+        //FieldGenerate(DungeonGenerator3.Generate(new Vector2Int(_width, _height)));
                                                  //RoomType.Room,
                                                  //roomSettings,
                                                  //new Vector2Int(_width, _height),
