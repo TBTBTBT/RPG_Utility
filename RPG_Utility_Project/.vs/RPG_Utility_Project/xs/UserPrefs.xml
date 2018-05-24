@@ -13,7 +13,7 @@
       <File FileName="Assets/Z_RpgUtility/04_Weapon/WeaponManager.cs" Line="108" Column="2" />
       <File FileName="Assets/Z_MobileUtility/Scripts/CameraUtility/CameraMover.cs" Line="27" Column="15" />
       <File FileName="Assets/Z_RpgUtility/05_Interface/Interfaces.cs" Line="43" Column="18" />
-      <File FileName="Assets/00_RougueArpg/Script/Player/AllyAttack.cs" Line="36" Column="66" />
+      <File FileName="Assets/00_RougueArpg/Script/Player/AllyAttack.cs" Line="36" Column="48" />
       <File FileName="Assets/00_RougueArpg/Script/UI/NumberManager.cs" Line="11" Column="49" />
       <File FileName="Assets/00_RougueArpg/Script/UI/PersonalUI.cs" Line="16" Column="26" />
       <File FileName="Assets/00_RougueArpg/Script/UI/UISpawner.cs" Line="17" Column="2" />
@@ -29,9 +29,9 @@
       <File FileName="Assets/00_RougueArpg/Script/Item/ItemManager.cs" Line="35" Column="65" />
       <File FileName="Assets/00_RougueArpg/Script/Util/NotComponent.cs" Line="4" Column="1" />
       <File FileName="Assets/00_RougueArpg/Script/UI/MessageManager.cs" Line="50" Column="6" />
-      <File FileName="Assets/00_RougueArpg/Script/NPC/NPCBase.cs" Line="62" Column="55" />
-      <File FileName="Assets/00_RougueArpg/Script/Player/Player.cs" Line="295" Column="70" />
-      <File FileName="Assets/Z_RpgUtility/00_Character/Script/RPGCharacter.cs" Line="63" Column="43" />
+      <File FileName="Assets/00_RougueArpg/Script/NPC/NPCBase.cs" Line="62" Column="15" />
+      <File FileName="Assets/00_RougueArpg/Script/Player/Player.cs" Line="295" Column="39" />
+      <File FileName="Assets/Z_RpgUtility/00_Character/Script/RPGCharacter.cs" Line="1" Column="1" />
       <File FileName="Assets/Z_RpgUtility/00_Character/CharacterBase.cs" Line="22" Column="20" />
       <File FileName="Assets/Z_MobileUtility/Scripts/MathUtility/MathUtil.cs" Line="13" Column="27" />
     </Files>
