@@ -23,8 +23,8 @@ public class CameraMover : MonoBehaviour
         }
 	    else
 	    {
-            float y = _chaseObj.transform.position.y + 2;
-            //if (y < transform.position.y) y = transform.position.y;
+            float y = _chaseObj.transform.position.y;
+            //if (y > transform.position.y) y = transform.position.y;
 	        transform.position = Vector3.Lerp(transform.position,
 	            new Vector3(_chaseObj.transform.position.x,y,-10),
 	            0.2f);

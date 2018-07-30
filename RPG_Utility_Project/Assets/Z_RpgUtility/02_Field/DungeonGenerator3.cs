@@ -10,8 +10,8 @@ public class DungeonGenerator3 : MonoBehaviour {
     }
     static FieldInfo[,] Glassfield(Vector2Int size){
         FieldInfo[,] map = AllPassable(size);
-        //CreateRoad(map, size,Random.Range(0,100f),3);
-        //CreateRoad(map, size, Random.Range(0, 100f), 2);
+        CreateRoad(map, size,Random.Range(0,100f),3);
+        CreateRoad(map, size, Random.Range(0, 100f), 2);
         return map;
     }
     static void CreateRoad(FieldInfo[,] map,Vector2Int size,float seed,int width){
