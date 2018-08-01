@@ -444,6 +444,65 @@ Prefab:
       propertyPath: m_Name
       value: Player_Sample
       objectReference: {fileID: 0}
+    - target: {fileID: 212050722037107004, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300004, guid: 4372a0e57c4814251a73eecc1655c1ce,
+        type: 3}
+    - target: {fileID: 212050722037107004, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212050722037107004, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212050722037107004, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212411634854801994, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300004, guid: c237ff0e2ef9440c59a279c3a996ada7,
+        type: 3}
+    - target: {fileID: 212411634854801994, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212411634854801994, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212411634854801994, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212829736953896830, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300004, guid: a5a36bae1aceb470188ac07edd58031f,
+        type: 3}
+    - target: {fileID: 212391384007476722, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300008, guid: 719e993a4a0f5488783de2b2e4195a8a,
+        type: 3}
+    - target: {fileID: 212391384007476722, guid: d6ecf6412869446c680bc3b05a96ea37,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6ecf6412869446c680bc3b05a96ea37, type: 2}
   m_IsPrefabAsset: 0
@@ -1284,7 +1343,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.43867922, g: 0.9719617, b: 1, a: 1}
+  m_BackGroundColor: {r: 0.19215688, g: 0.19215688, b: 0.19215688, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -3823,7 +3882,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1987893441631504, guid: d6ecf6412869446c680bc3b05a96ea37,
     type: 2}
   m_PrefabInternal: {fileID: 110405608}
---- !u!95 &2086749710
+--- !u!95 &2086749711
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

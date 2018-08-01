@@ -49,7 +49,7 @@ public class DungeonGenerator2 : MonoBehaviour
             new Vector2Int(1,0),
             new Vector2Int(0,1)
         };
-    static int _mazeSize = 4;
+    static int _mazeSize = 6;
 
     //穴掘り法による生成
     public static FieldInfo[,] GenerateMaze(Vector2Int size, Vector2Int center)

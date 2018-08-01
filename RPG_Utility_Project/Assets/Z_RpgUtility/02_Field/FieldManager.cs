@@ -109,9 +109,9 @@ public class FieldViewController
 public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
 {
     [System.NonSerialized]
-    public int _width = 30;
+    public int _width = 35;
     [System.NonSerialized]
-    public int _height = 30;
+    public int _height = 35;
 
     private FieldInfo[,] _field;
 
@@ -147,11 +147,12 @@ public class FieldManager : SingletonMonoBehaviourCanDestroy<FieldManager>
     }
 
     void Start () {
-        FieldGenerate(DungeonGenerator2.Generate(//new Vector2Int(_width, _height)));
-                                                 RoomType.Room,
-                                                 roomSettings,
-                                                 new Vector2Int(_width, _height),
-                                                 new Vector2Int(_width/2, _height/2)));
+        FieldGenerate(DungeonGenerator2.GenerateMaze(new Vector2Int(_width, _height),new Vector2Int(_width / 2, _height / 2)));
+        //FieldGenerate(DungeonGenerator2.Generate(//new Vector2Int(_width, _height)));
+        //                                         RoomType.Room,
+        //                                         roomSettings,
+        //                                         new Vector2Int(_width, _height),
+        //                                         new Vector2Int(_width/2, _height/2)));
 	}
 	
 
