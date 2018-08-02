@@ -3144,6 +3144,23 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114835169371557492, guid: 70da840cfc340ba4a84db6405eaae203,
+        type: 2}
+      propertyPath: _floortile
+      value: 
+      objectReference: {fileID: 11400000, guid: a439f78cc44174594bd26a7e471eece7,
+        type: 2}
+    - target: {fileID: 114835169371557492, guid: 70da840cfc340ba4a84db6405eaae203,
+        type: 2}
+      propertyPath: _walltile
+      value: 
+      objectReference: {fileID: 11400000, guid: 76122cdfbca9e43ea923a9102c86760f,
+        type: 2}
+    - target: {fileID: 2113883506116019586, guid: 70da840cfc340ba4a84db6405eaae203,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70da840cfc340ba4a84db6405eaae203, type: 2}
   m_IsPrefabAsset: 0
